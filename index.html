@@ -1,0 +1,1703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Inference Engineering Master Map</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;max-width:736px;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Inference Engineering Master Map" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Inference Engineering Master Map&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;iem-platform&quot;&gt;
+  &lt;style&gt;
+    #iem-platform {
+      --iem-s1: var(--viz-series-1);
+      --iem-s2: var(--viz-series-2);
+      --iem-s3: var(--viz-series-3);
+      --iem-s4: var(--viz-series-4);
+      color: var(--foreground);
+      width: 100%;
+    }
+    #iem-platform * { box-sizing: border-box; }
+    #iem-platform .iem-topline,
+    #iem-platform .iem-nav,
+    #iem-platform .iem-section-head,
+    #iem-platform .iem-kicker,
+    #iem-platform .iem-meta,
+    #iem-platform .iem-legend,
+    #iem-platform .iem-node-head,
+    #iem-platform .iem-control-head,
+    #iem-platform .iem-bar-label,
+    #iem-platform .iem-equation,
+    #iem-platform .iem-project-head,
+    #iem-platform .iem-question-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    #iem-platform .iem-topline { justify-content: space-between; margin-bottom: 10px; }
+    #iem-platform .iem-progress-shell {
+      height: 7px;
+      background: color-mix(in srgb, var(--muted) 70%, transparent);
+      overflow: hidden;
+      flex: 1 1 180px;
+      border-radius: 999px;
+    }
+    #iem-platform .iem-progress-fill {
+      height: 100%;
+      width: 8%;
+      background: var(--iem-s1);
+      transition: width 220ms ease;
+    }
+    #iem-platform .iem-nav { margin-bottom: 18px; }
+    #iem-platform .iem-view { display: none; }
+    #iem-platform .iem-view.is-active { display: block; }
+    #iem-platform .iem-section-head { justify-content: space-between; margin: 0 0 14px; }
+    #iem-platform .iem-section-head h2,
+    #iem-platform .iem-detail h3,
+    #iem-platform .iem-card-title { margin: 0; }
+    #iem-platform .iem-kicker { color: var(--muted-foreground); }
+    #iem-platform .iem-map-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, .8fr) minmax(300px, 1.4fr);
+      gap: 22px;
+      align-items: start;
+    }
+    #iem-platform .iem-layer-list { display: grid; gap: 4px; }
+    #iem-platform .iem-layer {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr) auto;
+      align-items: center;
+      text-align: left;
+      gap: 9px;
+    }
+    #iem-platform .iem-layer .iem-layer-num {
+      color: var(--muted-foreground);
+      font-variant-numeric: tabular-nums;
+    }
+    #iem-platform .iem-layer .iem-layer-state { color: var(--muted-foreground); }
+    #iem-platform .iem-detail { min-width: 0; }
+    #iem-platform .iem-path {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(64px, 1fr));
+      align-items: stretch;
+      gap: 3px;
+      margin: 14px 0 18px;
+    }
+    #iem-platform .iem-path-step {
+      position: relative;
+      min-height: 60px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 8px 5px;
+      background: color-mix(in srgb, var(--iem-s1) 9%, transparent);
+      border-bottom: 2px solid color-mix(in srgb, var(--iem-s1) 48%, transparent);
+    }
+    #iem-platform .iem-path-step + .iem-path-step::before {
+      content: &quot;›&quot;;
+      position: absolute;
+      left: -7px;
+      color: var(--muted-foreground);
+    }
+    #iem-platform .iem-triad,
+    #iem-platform .iem-stats,
+    #iem-platform .iem-sim-layout,
+    #iem-platform .iem-lab-layout,
+    #iem-platform .iem-project-grid,
+    #iem-platform .iem-metric-grid {
+      display: grid;
+      gap: 14px;
+    }
+    #iem-platform .iem-triad { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #iem-platform .iem-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 14px 0; }
+    #iem-platform .iem-sim-layout { grid-template-columns: minmax(220px, .7fr) minmax(300px, 1.3fr); }
+    #iem-platform .iem-lab-layout { grid-template-columns: minmax(220px, .75fr) minmax(300px, 1.25fr); }
+    #iem-platform .iem-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #iem-platform .iem-metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #iem-platform .iem-triad &gt; div,
+    #iem-platform .iem-teach-step,
+    #iem-platform .iem-metric,
+    #iem-platform .iem-project {
+      border-left: 2px solid var(--border);
+      padding-left: 12px;
+    }
+    #iem-platform .iem-triad strong,
+    #iem-platform .iem-teach-step strong,
+    #iem-platform .iem-metric strong,
+    #iem-platform .iem-project strong { display: block; margin-bottom: 4px; font-weight: 500; }
+    #iem-platform .iem-chip-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+    #iem-platform .iem-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--iem-s1) 11%, transparent);
+    }
+    #iem-platform .iem-flow {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(64px, 1fr));
+      gap: 4px;
+      margin: 14px 0;
+    }
+    #iem-platform .iem-flow-node {
+      min-height: 86px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      padding: 8px 4px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 76%, transparent);
+      color: var(--card-foreground);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #iem-platform .iem-flow-node:hover { background: var(--accent); color: var(--accent-foreground); }
+    #iem-platform .iem-flow-node.is-active { background: var(--primary); color: var(--primary-foreground); }
+    #iem-platform .iem-flow-node + .iem-flow-node::before {
+      content: &quot;›&quot;;
+      position: absolute;
+      left: -7px;
+      top: 34px;
+      color: var(--muted-foreground);
+    }
+    #iem-platform .iem-flow-node svg { width: 18px; height: 18px; }
+    #iem-platform .iem-node-detail { margin-bottom: 16px; }
+    #iem-platform .iem-node-head { justify-content: space-between; margin-bottom: 10px; }
+    #iem-platform .iem-timeline { margin: 18px 0; }
+    #iem-platform .iem-time-axis {
+      display: grid;
+      grid-template-columns: 72px repeat(12, minmax(12px, 1fr));
+      gap: 2px;
+      align-items: stretch;
+      margin-bottom: 4px;
+    }
+    #iem-platform .iem-time-label { display: flex; align-items: center; color: var(--muted-foreground); }
+    #iem-platform .iem-slot {
+      min-height: 28px;
+      background: color-mix(in srgb, var(--muted) 54%, transparent);
+      border-radius: 3px;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+    #iem-platform .iem-slot.prefill { background: color-mix(in srgb, var(--iem-s2) 50%, transparent); }
+    #iem-platform .iem-slot.decode { background: color-mix(in srgb, var(--iem-s1) 58%, transparent); }
+    #iem-platform .iem-slot.active { transform: translateY(-2px); outline: 2px solid var(--ring); }
+    #iem-platform .iem-legend { color: var(--muted-foreground); }
+    #iem-platform .iem-swatch { width: 12px; height: 12px; display: inline-block; border-radius: 3px; }
+    #iem-platform .iem-swatch.prefill { background: var(--iem-s2); }
+    #iem-platform .iem-swatch.decode { background: var(--iem-s1); }
+    #iem-platform .iem-control-stack { display: grid; gap: 14px; }
+    #iem-platform .iem-control-head { justify-content: space-between; }
+    #iem-platform .iem-control-head output { font-variant-numeric: tabular-nums; }
+    #iem-platform .iem-chart { min-width: 0; }
+    #iem-platform .iem-bars { display: grid; gap: 12px; margin-top: 16px; }
+    #iem-platform .iem-bar-label { justify-content: space-between; }
+    #iem-platform .iem-bar-track {
+      height: 16px;
+      background: color-mix(in srgb, var(--muted) 65%, transparent);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    #iem-platform .iem-bar-fill {
+      height: 100%;
+      min-width: 2px;
+      background: var(--iem-s1);
+      border-radius: 999px;
+      transition: width 220ms ease;
+    }
+    #iem-platform .iem-bar-fill.alt { background: var(--iem-s2); }
+    #iem-platform .iem-bar-fill.third { background: var(--iem-s3); }
+    #iem-platform .iem-equation {
+      justify-content: center;
+      margin: 16px 0;
+      padding: 12px;
+      background: color-mix(in srgb, var(--iem-s1) 8%, transparent);
+      border-radius: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    #iem-platform .iem-eq-op { color: var(--muted-foreground); }
+    #iem-platform .iem-canvas {
+      min-height: 260px;
+      display: grid;
+      align-content: center;
+    }
+    #iem-platform .iem-memory-stack { display: flex; height: 210px; gap: 4px; align-items: end; }
+    #iem-platform .iem-memory-segment {
+      flex: 1;
+      min-width: 0;
+      display: grid;
+      place-items: end center;
+      padding: 8px 3px;
+      background: color-mix(in srgb, var(--iem-s1) 38%, transparent);
+      color: var(--foreground);
+      border-radius: 6px 6px 0 0;
+      transition: height 220ms ease;
+    }
+    #iem-platform .iem-memory-segment.weights { background: color-mix(in srgb, var(--iem-s2) 50%, transparent); }
+    #iem-platform .iem-memory-segment.free { background: color-mix(in srgb, var(--muted) 70%, transparent); }
+    #iem-platform .iem-gpu-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+    #iem-platform .iem-gpu {
+      min-height: 112px;
+      padding: 9px;
+      background: color-mix(in srgb, var(--iem-s1) 10%, transparent);
+      border-top: 3px solid var(--iem-s1);
+      text-align: center;
+      display: grid;
+      align-content: center;
+      gap: 5px;
+    }
+    #iem-platform .iem-comm-line { height: 2px; background: var(--iem-s3); margin: 8px 10%; position: relative; }
+    #iem-platform .iem-comm-line::after { content: &quot;all-reduce / gather&quot;; position: absolute; left: 50%; transform: translate(-50%, -50%); background: var(--background); padding: 0 7px; color: var(--muted-foreground); white-space: nowrap; }
+    #iem-platform .iem-scenario-list { display: grid; gap: 6px; }
+    #iem-platform .iem-scenario-list .btn { justify-content: flex-start; text-align: left; }
+    #iem-platform .iem-signal-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    #iem-platform .iem-signal-table th,
+    #iem-platform .iem-signal-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); }
+    #iem-platform .iem-answer { display: none; margin-top: 14px; }
+    #iem-platform .iem-answer.is-visible { display: block; }
+    #iem-platform .iem-checklist { display: grid; gap: 7px; margin: 12px 0; }
+    #iem-platform .iem-checklist label { display: flex; gap: 8px; align-items: start; }
+    #iem-platform .iem-project { padding-top: 8px; padding-bottom: 8px; }
+    #iem-platform .iem-project-head { justify-content: space-between; margin-bottom: 5px; }
+    #iem-platform .iem-stage-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); display: inline-block; }
+    #iem-platform .iem-stage-dot.current { background: var(--iem-s1); }
+    #iem-platform .iem-stage-dot.future { background: var(--muted-foreground); }
+    #iem-platform .iem-teaching-loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 14px 0; }
+    #iem-platform .iem-teach-step { min-height: 68px; }
+    #iem-platform .iem-mode-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0; }
+    #iem-platform .iem-footnote { margin-top: 18px; color: var(--muted-foreground); }
+    #iem-platform .iem-footnote a { color: inherit; }
+    #iem-platform .iem-hidden { display: none !important; }
+    @media (max-width: 760px) {
+      #iem-platform .iem-map-layout,
+      #iem-platform .iem-sim-layout,
+      #iem-platform .iem-lab-layout { grid-template-columns: 1fr; }
+      #iem-platform .iem-flow { grid-template-columns: repeat(3, minmax(78px, 1fr)); }
+      #iem-platform .iem-flow-node + .iem-flow-node::before { display: none; }
+      #iem-platform .iem-path { grid-template-columns: repeat(4, minmax(70px, 1fr)); }
+      #iem-platform .iem-path-step + .iem-path-step::before { display: none; }
+      #iem-platform .iem-teaching-loop { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      #iem-platform .iem-metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 470px) {
+      #iem-platform .iem-triad,
+      #iem-platform .iem-stats,
+      #iem-platform .iem-project-grid,
+      #iem-platform .iem-metric-grid { grid-template-columns: 1fr; }
+      #iem-platform .iem-path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #iem-platform .iem-gpu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #iem-platform .iem-teaching-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #iem-platform .iem-time-axis { grid-template-columns: 54px repeat(12, minmax(8px, 1fr)); }
+      #iem-platform .iem-slot { min-height: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #iem-platform .iem-progress-fill,
+      #iem-platform .iem-bar-fill,
+      #iem-platform .iem-memory-segment,
+      #iem-platform .iem-slot { transition: none; }
+    }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;iem-topline&quot;&gt;
+    &lt;div class=&quot;iem-kicker&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;FOUNDATION&lt;/span&gt;&lt;span id=&quot;iem-progress-label&quot;&gt;1 of 13 layers entered&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-progress-shell&quot; aria-label=&quot;Course progress&quot;&gt;&lt;div class=&quot;iem-progress-fill&quot; id=&quot;iem-progress-fill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;nav class=&quot;iem-nav&quot; aria-label=&quot;Learning platform sections&quot;&gt;
+    &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; data-view=&quot;map&quot; aria-pressed=&quot;true&quot;&gt;Master map&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;module&quot; aria-pressed=&quot;false&quot;&gt;Big picture&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;sim&quot; aria-pressed=&quot;false&quot;&gt;Simulators&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;metrics&quot; aria-pressed=&quot;false&quot;&gt;Metrics&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;labs&quot; aria-pressed=&quot;false&quot;&gt;Debug lab&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;curriculum&quot; aria-pressed=&quot;false&quot;&gt;Curriculum&lt;/button&gt;
+  &lt;/nav&gt;
+
+  &lt;section class=&quot;iem-view is-active&quot; data-panel=&quot;map&quot;&gt;
+    &lt;div class=&quot;iem-section-head&quot;&gt;
+      &lt;div&gt;&lt;h2&gt;Master map&lt;/h2&gt;&lt;div class=&quot;text-muted&quot;&gt;Select a layer to see its dependencies and what it unlocks.&lt;/div&gt;&lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot;&gt;13 layers · 1 system&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iem-map-layout&quot;&gt;
+      &lt;div class=&quot;iem-layer-list&quot; id=&quot;iem-layer-list&quot; aria-label=&quot;Inference engineering layers&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-detail&quot;&gt;
+        &lt;div class=&quot;iem-meta&quot;&gt;&lt;span class=&quot;viz-badge&quot; id=&quot;iem-layer-number&quot;&gt;LAYER 0&lt;/span&gt;&lt;span class=&quot;text-muted&quot; id=&quot;iem-layer-difficulty&quot;&gt;Foundation&lt;/span&gt;&lt;/div&gt;
+        &lt;h3 id=&quot;iem-layer-title&quot;&gt;Foundations&lt;/h3&gt;
+        &lt;p id=&quot;iem-layer-why&quot;&gt;&lt;/p&gt;
+        &lt;div class=&quot;iem-triad&quot;&gt;
+          &lt;div&gt;&lt;strong&gt;Prerequisites&lt;/strong&gt;&lt;span id=&quot;iem-layer-prereq&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;strong&gt;Core question&lt;/strong&gt;&lt;span id=&quot;iem-layer-question&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;strong&gt;Unlocks&lt;/strong&gt;&lt;span id=&quot;iem-layer-unlocks&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;iem-chip-row&quot; id=&quot;iem-layer-topics&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;iem-path&quot; aria-label=&quot;End-to-end inference reasoning chain&quot;&gt;
+          &lt;div class=&quot;iem-path-step&quot;&gt;Algorithm&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Tensor ops&lt;/div&gt;
+          &lt;div class=&quot;iem-path-step&quot;&gt;Kernel&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Hardware&lt;/div&gt;
+          &lt;div class=&quot;iem-path-step&quot;&gt;Memory&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Runtime&lt;/div&gt;
+          &lt;div class=&quot;iem-path-step&quot;&gt;Serving&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;User latency&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button class=&quot;btn btn-primary&quot; id=&quot;iem-enter-module&quot; type=&quot;button&quot;&gt;Enter the big picture&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;iem-view&quot; data-panel=&quot;module&quot;&gt;
+    &lt;div class=&quot;iem-section-head&quot;&gt;
+      &lt;div&gt;&lt;h2&gt;Module 1 · The big picture&lt;/h2&gt;&lt;div class=&quot;text-muted&quot;&gt;Follow one request from text to streamed tokens.&lt;/div&gt;&lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot; id=&quot;iem-module-mode&quot;&gt;EXPLORER MODE&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iem-mode-row&quot; aria-label=&quot;Learning modes&quot;&gt;
+      &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; data-mode=&quot;Explorer&quot;&gt;Explorer&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-mode=&quot;Hardware&quot;&gt;Hardware&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-mode=&quot;Code&quot;&gt;Code&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-mode=&quot;Performance&quot;&gt;Performance&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-mode=&quot;Production&quot;&gt;Production&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-mode=&quot;Interview&quot;&gt;Interview&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iem-flow&quot; id=&quot;iem-flow&quot; aria-label=&quot;Request lifecycle&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;card iem-node-detail&quot;&gt;
+      &lt;div class=&quot;iem-node-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot; id=&quot;iem-node-stage&quot;&gt;STAGE 1&lt;/span&gt;&lt;h3 id=&quot;iem-node-title&quot;&gt;Request&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot; id=&quot;iem-node-resource&quot;&gt;CPU · network&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Why it exists&lt;/strong&gt;&lt;span id=&quot;iem-node-why&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Watch&lt;/strong&gt;&lt;span id=&quot;iem-node-watch&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Typical failure&lt;/strong&gt;&lt;span id=&quot;iem-node-fail&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;h3&gt;One scheduler iteration&lt;/h3&gt;&lt;div class=&quot;text-muted&quot;&gt;Prefill processes many prompt tokens; decode advances each active sequence by one token.&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;iem-question-actions&quot;&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;iem-step-prev&quot;&gt;Previous&lt;/button&gt;&lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;iem-step-next&quot;&gt;Next tick&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-timeline&quot; id=&quot;iem-timeline&quot; aria-label=&quot;Continuous batching timeline&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-legend&quot;&gt;&lt;span class=&quot;iem-swatch prefill&quot;&gt;&lt;/span&gt;Prefill &lt;span class=&quot;iem-swatch decode&quot;&gt;&lt;/span&gt;Decode &lt;span class=&quot;text-muted&quot; id=&quot;iem-tick-label&quot;&gt;Tick 1: Request A enters prefill.&lt;/span&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;iem-stats&quot;&gt;
+      &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;TTFT estimate&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;iem-big-ttft&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;queue + prefill + first decode&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;TPOT estimate&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;iem-big-tpot&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;steady decode cadence&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Weight memory&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;iem-big-weights&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;parameters × bytes&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;viz-controls&quot;&gt;
+      &lt;label class=&quot;form-label&quot;&gt;Model size &lt;span id=&quot;iem-big-model-out&quot;&gt;7B&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;iem-big-model&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;70&quot; value=&quot;7&quot; step=&quot;1&quot;&gt;&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot;&gt;Prompt &lt;span id=&quot;iem-big-prompt-out&quot;&gt;1024 tokens&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;iem-big-prompt&quot; type=&quot;range&quot; min=&quot;128&quot; max=&quot;8192&quot; value=&quot;1024&quot; step=&quot;128&quot;&gt;&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot;&gt;Batch &lt;span id=&quot;iem-big-batch-out&quot;&gt;8&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;iem-big-batch&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;64&quot; value=&quot;8&quot; step=&quot;1&quot;&gt;&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot;&gt;Weight precision&lt;select class=&quot;form-select&quot; id=&quot;iem-big-precision&quot;&gt;&lt;option value=&quot;2&quot;&gt;BF16 / FP16&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;INT8 / FP8 storage&lt;/option&gt;&lt;option value=&quot;0.5&quot;&gt;INT4&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iem-footnote text-small&quot;&gt;Estimates are intuition builders, not hardware benchmarks. They expose scaling direction and resource pressure.&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;iem-view&quot; data-panel=&quot;sim&quot;&gt;
+    &lt;div class=&quot;iem-section-head&quot;&gt;
+      &lt;div&gt;&lt;h2&gt;Performance playground&lt;/h2&gt;&lt;div class=&quot;text-muted&quot;&gt;Change one assumption and watch memory, work, and communication move.&lt;/div&gt;&lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot;&gt;LIVE MODEL&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iem-nav&quot; aria-label=&quot;Simulator selector&quot;&gt;
+      &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; data-sim=&quot;kv&quot;&gt;KV cache&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-sim=&quot;prefill&quot;&gt;Prefill vs decode&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-sim=&quot;quant&quot;&gt;Quantization&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-sim=&quot;tp&quot;&gt;Tensor parallelism&lt;/button&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-sim=&quot;scheduler&quot;&gt;Scheduler&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;iem-sim-panel&quot; data-sim-panel=&quot;kv&quot;&gt;
+      &lt;div class=&quot;iem-sim-layout&quot;&gt;
+        &lt;div class=&quot;iem-control-stack&quot;&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Layers&lt;/span&gt;&lt;output id=&quot;kv-layers-out&quot;&gt;32&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;kv-layers&quot; type=&quot;range&quot; min=&quot;8&quot; max=&quot;120&quot; value=&quot;32&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;KV heads&lt;/span&gt;&lt;output id=&quot;kv-heads-out&quot;&gt;8&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;kv-heads&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;64&quot; value=&quot;8&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Head dimension&lt;/span&gt;&lt;output id=&quot;kv-dim-out&quot;&gt;128&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;kv-dim&quot; type=&quot;range&quot; min=&quot;64&quot; max=&quot;256&quot; value=&quot;128&quot; step=&quot;32&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Sequence&lt;/span&gt;&lt;output id=&quot;kv-seq-out&quot;&gt;4096 tokens&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;kv-seq&quot; type=&quot;range&quot; min=&quot;128&quot; max=&quot;32768&quot; value=&quot;4096&quot; step=&quot;128&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Batch&lt;/span&gt;&lt;output id=&quot;kv-batch-out&quot;&gt;8&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;kv-batch&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;64&quot; value=&quot;8&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;KV precision&lt;select class=&quot;form-select&quot; id=&quot;kv-bytes&quot;&gt;&lt;option value=&quot;2&quot;&gt;BF16 / FP16 · 2 B&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;FP8 / INT8 · 1 B&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;iem-chart&quot;&gt;
+          &lt;div class=&quot;iem-stats&quot;&gt;
+            &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;KV cache&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;kv-total&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;entire batch&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Per token&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;kv-per-token&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;one sequence&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;16-token pages&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;kv-pages&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;allocated blocks&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;iem-equation&quot;&gt;&lt;span&gt;L&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;×&lt;/span&gt;&lt;span&gt;tokens&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;×&lt;/span&gt;&lt;span&gt;KV heads&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;×&lt;/span&gt;&lt;span&gt;head dim&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;×&lt;/span&gt;&lt;span&gt;2 (K+V)&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;×&lt;/span&gt;&lt;span&gt;bytes&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;×&lt;/span&gt;&lt;span&gt;batch&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;iem-memory-stack&quot; id=&quot;kv-stack&quot; aria-label=&quot;GPU memory composition&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;text-muted text-small&quot; id=&quot;kv-observation&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;iem-sim-panel iem-hidden&quot; data-sim-panel=&quot;prefill&quot;&gt;
+      &lt;div class=&quot;iem-sim-layout&quot;&gt;
+        &lt;div class=&quot;iem-control-stack&quot;&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Prompt&lt;/span&gt;&lt;output id=&quot;pd-prompt-out&quot;&gt;2048&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;pd-prompt&quot; type=&quot;range&quot; min=&quot;128&quot; max=&quot;16384&quot; value=&quot;2048&quot; step=&quot;128&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Generated&lt;/span&gt;&lt;output id=&quot;pd-output-out&quot;&gt;256&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;pd-output&quot; type=&quot;range&quot; min=&quot;16&quot; max=&quot;2048&quot; value=&quot;256&quot; step=&quot;16&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Batch&lt;/span&gt;&lt;output id=&quot;pd-batch-out&quot;&gt;8&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;pd-batch&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;64&quot; value=&quot;8&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Model&lt;/span&gt;&lt;output id=&quot;pd-model-out&quot;&gt;7B&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;pd-model&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;70&quot; value=&quot;7&quot;&gt;&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;iem-chart&quot;&gt;
+          &lt;div class=&quot;iem-stats&quot;&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Prefill work&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;pd-prefill-work&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;parallel token processing&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Decode steps&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;pd-decode-steps&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;serial across output&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Dominant pressure&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;pd-bound&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;roofline intuition&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;iem-bars&quot;&gt;&lt;div&gt;&lt;div class=&quot;iem-bar-label&quot;&gt;&lt;span&gt;Prefill · compute reuse&lt;/span&gt;&lt;span id=&quot;pd-prefill-label&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;iem-bar-track&quot;&gt;&lt;div class=&quot;iem-bar-fill alt&quot; id=&quot;pd-prefill-bar&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;iem-bar-label&quot;&gt;&lt;span&gt;Decode · weight bandwidth&lt;/span&gt;&lt;span id=&quot;pd-decode-label&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;iem-bar-track&quot;&gt;&lt;div class=&quot;iem-bar-fill&quot; id=&quot;pd-decode-bar&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;p class=&quot;text-muted&quot; id=&quot;pd-observation&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;iem-sim-panel iem-hidden&quot; data-sim-panel=&quot;quant&quot;&gt;
+      &lt;div class=&quot;iem-sim-layout&quot;&gt;
+        &lt;div class=&quot;iem-control-stack&quot;&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Parameters&lt;/span&gt;&lt;output id=&quot;q-model-out&quot;&gt;70B&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;q-model&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;405&quot; value=&quot;70&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Available VRAM&lt;/span&gt;&lt;output id=&quot;q-vram-out&quot;&gt;80 GB&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;q-vram&quot; type=&quot;range&quot; min=&quot;16&quot; max=&quot;640&quot; value=&quot;80&quot; step=&quot;8&quot;&gt;&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;iem-chart&quot;&gt;&lt;div class=&quot;iem-bars&quot; id=&quot;q-bars&quot;&gt;&lt;/div&gt;&lt;p class=&quot;text-muted&quot;&gt;Storage scales exactly with bits; realized speed and quality do not. Kernel support, dequantization, calibration, outliers, and hardware determine the result.&lt;/p&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;iem-sim-panel iem-hidden&quot; data-sim-panel=&quot;tp&quot;&gt;
+      &lt;div class=&quot;iem-sim-layout&quot;&gt;
+        &lt;div class=&quot;iem-control-stack&quot;&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Model&lt;/span&gt;&lt;output id=&quot;tp-model-out&quot;&gt;70B&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;tp-model&quot; type=&quot;range&quot; min=&quot;7&quot; max=&quot;405&quot; value=&quot;70&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;GPUs / TP degree&lt;/span&gt;&lt;output id=&quot;tp-degree-out&quot;&gt;4&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;tp-degree&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;8&quot; value=&quot;4&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Interconnect&lt;/span&gt;&lt;output id=&quot;tp-link-out&quot;&gt;900 GB/s&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;tp-link&quot; type=&quot;range&quot; min=&quot;32&quot; max=&quot;900&quot; value=&quot;900&quot; step=&quot;4&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Batch tokens / step&lt;/span&gt;&lt;output id=&quot;tp-tokens-out&quot;&gt;32&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;tp-tokens&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;512&quot; value=&quot;32&quot;&gt;&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;iem-chart&quot;&gt;&lt;div class=&quot;iem-stats&quot;&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Weights / GPU&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;tp-memory&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;BF16 ideal shard&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Ideal speedup&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;tp-ideal&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;compute ceiling&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Efficiency model&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;tp-eff&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;after communication&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;iem-gpu-grid&quot; id=&quot;tp-gpus&quot;&gt;&lt;/div&gt;&lt;div class=&quot;iem-comm-line&quot;&gt;&lt;/div&gt;&lt;p class=&quot;text-muted&quot; id=&quot;tp-observation&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;iem-sim-panel iem-hidden&quot; data-sim-panel=&quot;scheduler&quot;&gt;
+      &lt;div class=&quot;iem-sim-layout&quot;&gt;
+        &lt;div class=&quot;iem-control-stack&quot;&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Arrival rate&lt;/span&gt;&lt;output id=&quot;sc-arrival-out&quot;&gt;18 req/s&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;sc-arrival&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;100&quot; value=&quot;18&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Average output&lt;/span&gt;&lt;output id=&quot;sc-output-out&quot;&gt;256 tokens&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;sc-output&quot; type=&quot;range&quot; min=&quot;32&quot; max=&quot;2048&quot; value=&quot;256&quot; step=&quot;32&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;&lt;span class=&quot;iem-control-head&quot;&gt;&lt;span&gt;Max active sequences&lt;/span&gt;&lt;output id=&quot;sc-batch-out&quot;&gt;32&lt;/output&gt;&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;sc-batch&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;128&quot; value=&quot;32&quot;&gt;&lt;/label&gt;
+          &lt;label class=&quot;form-label&quot;&gt;Policy&lt;select class=&quot;form-select&quot; id=&quot;sc-policy&quot;&gt;&lt;option value=&quot;continuous&quot;&gt;Continuous batching&lt;/option&gt;&lt;option value=&quot;static&quot;&gt;Static batching&lt;/option&gt;&lt;option value=&quot;latency&quot;&gt;Latency-first&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;iem-chart&quot;&gt;&lt;div class=&quot;iem-stats&quot;&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Utilization&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;sc-util&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;modeled saturation&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Queue&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;sc-queue&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;requests after 10s&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;p99 trend&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;sc-p99&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;qualitative regime&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;iem-bars&quot;&gt;&lt;div&gt;&lt;div class=&quot;iem-bar-label&quot;&gt;&lt;span&gt;Demand&lt;/span&gt;&lt;span id=&quot;sc-demand-label&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;iem-bar-track&quot;&gt;&lt;div class=&quot;iem-bar-fill third&quot; id=&quot;sc-demand-bar&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;iem-bar-label&quot;&gt;&lt;span&gt;Modeled capacity&lt;/span&gt;&lt;span id=&quot;sc-capacity-label&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;iem-bar-track&quot;&gt;&lt;div class=&quot;iem-bar-fill&quot; id=&quot;sc-capacity-bar&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;p class=&quot;text-muted&quot; id=&quot;sc-observation&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;iem-view&quot; data-panel=&quot;metrics&quot;&gt;
+    &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;h2&gt;Metric compass&lt;/h2&gt;&lt;div class=&quot;text-muted&quot;&gt;A metric is useful only when you know its clock, population, and failure mode.&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;viz-badge&quot;&gt;MEASURE → EXPLAIN → ACT&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-metric-grid&quot; id=&quot;iem-metric-grid&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;card&quot; style=&quot;margin-top:14px&quot;&gt;
+      &lt;div class=&quot;iem-node-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;BENCHMARK PROTOCOL&lt;/span&gt;&lt;h3&gt;Make “tokens/s” mean something&lt;/h3&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-path&quot;&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Declare model + hardware&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Fix input/output mix&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Warm up&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Sweep concurrency&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Find saturation&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Report distributions&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Profile bottleneck&lt;/div&gt;&lt;div class=&quot;iem-path-step&quot;&gt;Repeat + compare&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;&lt;div&gt;&lt;strong&gt;Control&lt;/strong&gt;Model, precision, engine version, hardware, prompt/output distribution.&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Measure&lt;/strong&gt;TTFT, TPOT/ITL, E2E, output tok/s, req/s, queue, p50–p99.&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Reject&lt;/strong&gt;A single throughput number without load, latency, lengths, or measurement window.&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;iem-view&quot; data-panel=&quot;labs&quot;&gt;
+    &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;h2&gt;Debug lab&lt;/h2&gt;&lt;div class=&quot;text-muted&quot;&gt;Form a hypothesis before revealing the diagnosis.&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;viz-badge&quot;&gt;EVIDENCE FIRST&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-lab-layout&quot;&gt;
+      &lt;div class=&quot;iem-scenario-list&quot; id=&quot;iem-scenario-list&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;iem-node-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot; id=&quot;lab-code&quot;&gt;SCENARIO A&lt;/span&gt;&lt;h3 id=&quot;lab-title&quot;&gt;&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot; id=&quot;lab-architecture&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;table class=&quot;iem-signal-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Signal&lt;/th&gt;&lt;th&gt;Observed&lt;/th&gt;&lt;th&gt;Question&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;lab-signals&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;
+        &lt;strong&gt;Choose the first thing you would test:&lt;/strong&gt;
+        &lt;div class=&quot;iem-checklist&quot; id=&quot;lab-options&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;iem-question-actions&quot;&gt;&lt;button class=&quot;btn btn-primary&quot; id=&quot;lab-check&quot; type=&quot;button&quot;&gt;Check diagnosis&lt;/button&gt;&lt;span id=&quot;lab-feedback&quot; class=&quot;text-muted&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;iem-answer&quot; id=&quot;lab-answer&quot;&gt;&lt;div class=&quot;iem-triad&quot;&gt;&lt;div&gt;&lt;strong&gt;Likely cause&lt;/strong&gt;&lt;span id=&quot;lab-cause&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Confirm with&lt;/strong&gt;&lt;span id=&quot;lab-confirm&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Try next&lt;/strong&gt;&lt;span id=&quot;lab-fix&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;iem-view&quot; data-panel=&quot;curriculum&quot;&gt;
+    &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;h2&gt;Progressive build path&lt;/h2&gt;&lt;div class=&quot;text-muted&quot;&gt;Every project turns one conceptual layer into an operating system.&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;viz-badge&quot;&gt;12 PROJECTS + CAPSTONE&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-teaching-loop&quot; aria-label=&quot;Default teaching loop&quot;&gt;
+      &lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;1 · Why&lt;/strong&gt;Need and intuition&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;2 · See&lt;/strong&gt;Visual + numbers&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;3 · Formalize&lt;/strong&gt;Math + tensors&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;4 · Build&lt;/strong&gt;Code + runtime&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;5 · Execute&lt;/strong&gt;Kernels + hardware&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;6 · Measure&lt;/strong&gt;Latency + throughput&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;7 · Break&lt;/strong&gt;Mistakes + debugging&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;8 · Optimize&lt;/strong&gt;Trade-offs&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;9 · Produce&lt;/strong&gt;Serving implications&lt;/div&gt;&lt;div class=&quot;iem-teach-step&quot;&gt;&lt;strong&gt;10 · Prove&lt;/strong&gt;Exercise + interview&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iem-project-grid&quot; id=&quot;iem-project-grid&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;card&quot; style=&quot;margin-top:14px&quot;&gt;&lt;div class=&quot;iem-project-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;CAPSTONE&lt;/span&gt;&lt;h3&gt;Design a production inference platform&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;Senior-level review&lt;/span&gt;&lt;/div&gt;&lt;p&gt;Choose model placement, parallelism, batching, KV policy, quantization, replicas, load balancing, autoscaling, observability, rollouts, and failure handling under a concrete traffic, latency, hardware, and budget envelope.&lt;/p&gt;&lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;iem-capstone&quot;&gt;Open capstone brief&lt;/button&gt;&lt;div id=&quot;iem-capstone-brief&quot; class=&quot;iem-answer&quot;&gt;&lt;div class=&quot;iem-triad&quot;&gt;&lt;div&gt;&lt;strong&gt;Workload&lt;/strong&gt;70B model; 1,800 input / 320 output tokens median; 45 requests/s peak.&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Hardware&lt;/strong&gt;16 × 80 GB GPUs; two 8-GPU nodes; fast intra-node, slower inter-node fabric.&lt;/div&gt;&lt;div&gt;&lt;strong&gt;SLO + budget&lt;/strong&gt;p95 TTFT ≤ 900 ms; p95 TPOT ≤ 45 ms; no more than 16 GPUs.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-footnote text-small&quot;&gt;Current framework note (verified Aug 2026): vLLM documents continuous batching, prefix caching, multiple parallelism modes and disaggregated prefill/decode; TensorRT-LLM documents in-flight batching, paged KV management and overlap scheduling; Hugging Face marks TGI as maintenance mode. Established principles in the map do not depend on any one engine.&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const root = document.getElementById(&#x27;iem-platform&#x27;);
+  if (!root) return;
+  const iemOne = (s, n = root) =&gt; n.querySelector(s);
+  const iemAll = (s, n = root) =&gt; Array.from(n.querySelectorAll(s));
+  const clamp = (v, lo, hi) =&gt; Math.max(lo, Math.min(hi, v));
+  const fmtBytes = (bytes) =&gt; {
+    const units = [&#x27;B&#x27;,&#x27;KB&#x27;,&#x27;MB&#x27;,&#x27;GB&#x27;,&#x27;TB&#x27;]; let v = bytes; let i = 0;
+    while (v &gt;= 1000 &amp;&amp; i &lt; units.length - 1) { v /= 1000; i++; }
+    return `${v &gt;= 100 ? v.toFixed(0) : v &gt;= 10 ? v.toFixed(1) : v.toFixed(2)} ${units[i]}`;
+  };
+  const fmt = (v, digits = 1) =&gt; Number(v).toLocaleString(undefined, {maximumFractionDigits: digits});
+
+  const layers = [
+    {name:&#x27;Foundations&#x27;, difficulty:&#x27;Foundation&#x27;, why:&#x27;The resource model underneath every inference decision: compute, memory, movement, latency, and concurrency.&#x27;, prereq:&#x27;Python, tensors, basic systems&#x27;, question:&#x27;Where do time and bytes go?&#x27;, unlocks:&#x27;Transformer execution&#x27;, topics:[&#x27;GPU/CPU&#x27;,&#x27;FLOPs&#x27;,&#x27;bandwidth&#x27;,&#x27;latency&#x27;,&#x27;PCIe&#x27;,&#x27;NUMA&#x27;,&#x27;precision&#x27;]},
+    {name:&#x27;Neural inference&#x27;, difficulty:&#x27;Foundation&#x27;, why:&#x27;Turns a model definition into a forward pass, logits, and an autoregressive loop.&#x27;, prereq:&#x27;Foundations + linear algebra&#x27;, question:&#x27;What computation predicts one token?&#x27;, unlocks:&#x27;Prefill and decode&#x27;, topics:[&#x27;forward pass&#x27;,&#x27;attention&#x27;,&#x27;MLP&#x27;,&#x27;logits&#x27;,&#x27;softmax&#x27;,&#x27;tokenization&#x27;]},
+    {name:&#x27;LLM internals&#x27;, difficulty:&#x27;Core&#x27;, why:&#x27;Separates prompt processing from token generation and exposes their different performance regimes.&#x27;, prereq:&#x27;Transformer forward pass&#x27;, question:&#x27;Why do prefill and decode behave differently?&#x27;, unlocks:&#x27;KV engineering + roofline&#x27;, topics:[&#x27;prefill&#x27;,&#x27;decode&#x27;,&#x27;KV cache&#x27;,&#x27;arithmetic intensity&#x27;,&#x27;roofline&#x27;]},
+    {name:&#x27;Inference runtime&#x27;, difficulty:&#x27;Core&#x27;, why:&#x27;Maps tensor operations to kernels, graphs, allocators, compilers, and device execution.&#x27;, prereq:&#x27;GPU + LLM internals&#x27;, question:&#x27;How does an op become GPU work?&#x27;, unlocks:&#x27;Kernel optimization&#x27;, topics:[&#x27;loading&#x27;,&#x27;kernels&#x27;,&#x27;fusion&#x27;,&#x27;CUDA graphs&#x27;,&#x27;compilation&#x27;,&#x27;memory pools&#x27;]},
+    {name:&#x27;Serving&#x27;, difficulty:&#x27;Core&#x27;, why:&#x27;Coordinates many independent users over a finite token and memory budget.&#x27;, prereq:&#x27;Runtime + latency metrics&#x27;, question:&#x27;Which request runs next?&#x27;, unlocks:&#x27;Schedulers + production SLOs&#x27;, topics:[&#x27;queues&#x27;,&#x27;continuous batching&#x27;,&#x27;streaming&#x27;,&#x27;backpressure&#x27;,&#x27;admission&#x27;]},
+    {name:&#x27;Parallelism&#x27;, difficulty:&#x27;Advanced&#x27;, why:&#x27;Splits model work across devices when one accelerator is insufficient or too slow.&#x27;, prereq:&#x27;Tensor shapes + collectives&#x27;, question:&#x27;What is split, and what must communicate?&#x27;, unlocks:&#x27;Distributed inference&#x27;, topics:[&#x27;TP&#x27;,&#x27;PP&#x27;,&#x27;DP&#x27;,&#x27;EP&#x27;,&#x27;CP&#x27;,&#x27;all-reduce&#x27;,&#x27;all-gather&#x27;]},
+    {name:&#x27;KV cache engineering&#x27;, difficulty:&#x27;Advanced&#x27;, why:&#x27;Makes autoregressive reuse practical while controlling fragmentation, eviction, and memory pressure.&#x27;, prereq:&#x27;Attention + serving&#x27;, question:&#x27;How is history stored and scheduled?&#x27;, unlocks:&#x27;Long context + prefix reuse&#x27;, topics:[&#x27;layout&#x27;,&#x27;pages&#x27;,&#x27;blocks&#x27;,&#x27;prefix cache&#x27;,&#x27;eviction&#x27;,&#x27;fragmentation&#x27;]},
+    {name:&#x27;Quantization&#x27;, difficulty:&#x27;Advanced&#x27;, why:&#x27;Trades representation fidelity for lower memory traffic, smaller capacity needs, and supported low-precision compute.&#x27;, prereq:&#x27;Precision + kernels&#x27;, question:&#x27;Which tensors can lose bits safely?&#x27;, unlocks:&#x27;Cost/performance tuning&#x27;, topics:[&#x27;BF16&#x27;,&#x27;FP8&#x27;,&#x27;INT8&#x27;,&#x27;INT4&#x27;,&#x27;calibration&#x27;,&#x27;KV quantization&#x27;]},
+    {name:&#x27;Advanced decoding&#x27;, difficulty:&#x27;Advanced&#x27;, why:&#x27;Changes how candidate tokens are produced and verified to reduce serial decode cost or control output.&#x27;, prereq:&#x27;Autoregressive decode&#x27;, question:&#x27;Can we accept more than one token per expensive step?&#x27;, unlocks:&#x27;Speculation + structured generation&#x27;, topics:[&#x27;sampling&#x27;,&#x27;beam&#x27;,&#x27;draft models&#x27;,&#x27;Medusa&#x27;,&#x27;rejection&#x27;,&#x27;acceptance&#x27;]},
+    {name:&#x27;Distributed inference&#x27;, difficulty:&#x27;Expert&#x27;, why:&#x27;Combines topology, collectives, placement, and synchronization across GPUs and nodes.&#x27;, prereq:&#x27;Parallelism + networking&#x27;, question:&#x27;When does communication erase compute gains?&#x27;, unlocks:&#x27;Multi-node production&#x27;, topics:[&#x27;NVLink&#x27;,&#x27;PCIe&#x27;,&#x27;InfiniBand&#x27;,&#x27;Ethernet&#x27;,&#x27;topology&#x27;,&#x27;faults&#x27;]},
+    {name:&#x27;Optimization&#x27;, difficulty:&#x27;Expert&#x27;, why:&#x27;Chooses the highest-leverage change after identifying the actual limiting resource.&#x27;, prereq:&#x27;Profiling across all layers&#x27;, question:&#x27;What is the bottleneck now?&#x27;, unlocks:&#x27;Reliable performance work&#x27;, topics:[&#x27;fusion&#x27;,&#x27;graphs&#x27;,&#x27;batching&#x27;,&#x27;caching&#x27;,&#x27;scheduling&#x27;,&#x27;memory&#x27;]},
+    {name:&#x27;Production serving&#x27;, difficulty:&#x27;Expert&#x27;, why:&#x27;Maintains SLOs through variable load, releases, failures, and cost constraints.&#x27;, prereq:&#x27;Serving + distributed systems&#x27;, question:&#x27;How does performance remain reliable?&#x27;, unlocks:&#x27;Platform architecture&#x27;, topics:[&#x27;autoscaling&#x27;,&#x27;SLOs&#x27;,&#x27;p99&#x27;,&#x27;rollouts&#x27;,&#x27;observability&#x27;,&#x27;fault tolerance&#x27;]},
+    {name:&#x27;Frameworks&#x27;, difficulty:&#x27;Applied&#x27;, why:&#x27;Connects principles to concrete engine architectures and their hardware, model, and operational trade-offs.&#x27;, prereq:&#x27;All prior layers&#x27;, question:&#x27;Which engine fits this workload?&#x27;, unlocks:&#x27;Informed deployment choices&#x27;, topics:[&#x27;vLLM&#x27;,&#x27;TensorRT-LLM&#x27;,&#x27;SGLang&#x27;,&#x27;TGI&#x27;,&#x27;llama.cpp&#x27;,&#x27;DeepSpeed&#x27;,&#x27;TorchInductor&#x27;]}
+  ];
+
+  const layerList = iemOne(&#x27;#iem-layer-list&#x27;);
+  layers.forEach((l, i) =&gt; {
+    const b = document.createElement(&#x27;button&#x27;);
+    b.type = &#x27;button&#x27;; b.className = `btn iem-layer${i === 0 ? &#x27; is-selected&#x27; : &#x27;&#x27;}`; b.dataset.layer = i; b.setAttribute(&#x27;aria-pressed&#x27;, i === 0 ? &#x27;true&#x27; : &#x27;false&#x27;);
+    b.innerHTML = `&lt;span class=&quot;iem-layer-num&quot;&gt;${String(i).padStart(2,&#x27;0&#x27;)}&lt;/span&gt;&lt;span&gt;${l.name}&lt;/span&gt;&lt;span class=&quot;iem-layer-state&quot;&gt;${i === 0 ? &#x27;●&#x27; : &#x27;○&#x27;}&lt;/span&gt;`;
+    layerList.appendChild(b);
+  });
+  function showLayer(i) {
+    const l = layers[i];
+    iemAll(&#x27;.iem-layer&#x27;).forEach((b, j) =&gt; { b.classList.toggle(&#x27;is-selected&#x27;, j === i); b.setAttribute(&#x27;aria-pressed&#x27;, j === i ? &#x27;true&#x27;:&#x27;false&#x27;); });
+    iemOne(&#x27;#iem-layer-number&#x27;).textContent = `LAYER ${i}`; iemOne(&#x27;#iem-layer-title&#x27;).textContent = l.name; iemOne(&#x27;#iem-layer-difficulty&#x27;).textContent = l.difficulty;
+    iemOne(&#x27;#iem-layer-why&#x27;).textContent = l.why; iemOne(&#x27;#iem-layer-prereq&#x27;).textContent = l.prereq; iemOne(&#x27;#iem-layer-question&#x27;).textContent = l.question; iemOne(&#x27;#iem-layer-unlocks&#x27;).textContent = l.unlocks;
+    iemOne(&#x27;#iem-layer-topics&#x27;).innerHTML = l.topics.map(t =&gt; `&lt;span class=&quot;iem-chip&quot;&gt;${t}&lt;/span&gt;`).join(&#x27;&#x27;);
+    iemOne(&#x27;#iem-enter-module&#x27;).textContent = i &lt;= 1 ? &#x27;Enter the big picture&#x27; : `Preview ${l.name}`;
+  }
+  layerList.addEventListener(&#x27;click&#x27;, e =&gt; { const b = e.target.closest(&#x27;[data-layer]&#x27;); if (b) showLayer(+b.dataset.layer); });
+
+  function switchView(name) {
+    iemAll(&#x27;[data-view]&#x27;).forEach(b =&gt; { const on = b.dataset.view === name; b.classList.toggle(&#x27;btn-primary&#x27;, on); b.setAttribute(&#x27;aria-pressed&#x27;, on ? &#x27;true&#x27;:&#x27;false&#x27;); });
+    iemAll(&#x27;[data-panel]&#x27;).forEach(p =&gt; p.classList.toggle(&#x27;is-active&#x27;, p.dataset.panel === name));
+    if (name !== &#x27;map&#x27;) { iemOne(&#x27;#iem-progress-fill&#x27;).style.width = &#x27;15%&#x27;; iemOne(&#x27;#iem-progress-label&#x27;).textContent = &#x27;Module 1 in progress&#x27;; }
+  }
+  iemAll(&#x27;[data-view]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; switchView(b.dataset.view)));
+  iemOne(&#x27;#iem-enter-module&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; switchView(&#x27;module&#x27;));
+
+  const flowData = [
+    {title:&#x27;Request&#x27;, icon:&#x27;send&#x27;, resource:&#x27;CPU · network&#x27;, why:&#x27;Defines prompt, sampling, limits, and deadline.&#x27;, watch:&#x27;arrival rate · payload · deadline&#x27;, fail:&#x27;bursts overwhelm admission&#x27;},
+    {title:&#x27;Tokenizer&#x27;, icon:&#x27;binary&#x27;, resource:&#x27;CPU · memory&#x27;, why:&#x27;Converts text into model vocabulary IDs.&#x27;, watch:&#x27;tokens/s · prompt length&#x27;, fail:&#x27;CPU stalls GPU feed&#x27;},
+    {title:&#x27;Queue&#x27;, icon:&#x27;list-ordered&#x27;, resource:&#x27;Host memory&#x27;, why:&#x27;Buffers demand until capacity is admitted.&#x27;, watch:&#x27;queue time · depth · age&#x27;, fail:&#x27;tail latency explodes&#x27;},
+    {title:&#x27;Scheduler&#x27;, icon:&#x27;calendar-clock&#x27;, resource:&#x27;CPU · policy&#x27;, why:&#x27;Packs token work under compute and KV budgets.&#x27;, watch:&#x27;batch tokens · preemption&#x27;, fail:&#x27;head-of-line blocking&#x27;},
+    {title:&#x27;Prefill&#x27;, icon:&#x27;layers&#x27;, resource:&#x27;GPU compute&#x27;, why:&#x27;Processes prompt tokens in parallel and creates KV state.&#x27;, watch:&#x27;TTFT · FLOPs · batch tokens&#x27;, fail:&#x27;long prompts monopolize steps&#x27;},
+    {title:&#x27;KV cache&#x27;, icon:&#x27;database&#x27;, resource:&#x27;GPU memory&#x27;, why:&#x27;Stores K/V tensors so history is not recomputed.&#x27;, watch:&#x27;blocks · hit rate · fragmentation&#x27;, fail:&#x27;allocation or eviction thrash&#x27;},
+    {title:&#x27;Decode&#x27;, icon:&#x27;repeat-2&#x27;, resource:&#x27;GPU bandwidth&#x27;, why:&#x27;Advances each sequence one autoregressive token.&#x27;, watch:&#x27;TPOT · active sequences&#x27;, fail:&#x27;weight reads dominate&#x27;},
+    {title:&#x27;Stream&#x27;, icon:&#x27;radio&#x27;, resource:&#x27;CPU · network&#x27;, why:&#x27;Returns tokens before generation completes.&#x27;, watch:&#x27;flush delay · disconnects&#x27;, fail:&#x27;backpressure pins resources&#x27;},
+    {title:&#x27;Observe&#x27;, icon:&#x27;activity&#x27;, resource:&#x27;Telemetry&#x27;, why:&#x27;Closes the loop between SLO symptoms and resources.&#x27;, watch:&#x27;p50/p95/p99 · traces&#x27;, fail:&#x27;averages hide tail pain&#x27;}
+  ];
+  const flow = iemOne(&#x27;#iem-flow&#x27;);
+  flowData.forEach((n, i) =&gt; {
+    const b = document.createElement(&#x27;button&#x27;); b.type=&#x27;button&#x27;; b.className=`iem-flow-node${i===0?&#x27; is-active&#x27;:&#x27;&#x27;}`; b.dataset.node=i; b.setAttribute(&#x27;aria-pressed&#x27;, i===0?&#x27;true&#x27;:&#x27;false&#x27;);
+    b.innerHTML = `&lt;i data-lucide=&quot;${n.icon}&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;${n.title}&lt;/span&gt;`; flow.appendChild(b);
+  });
+  function showNode(i) { const n=flowData[i]; iemAll(&#x27;.iem-flow-node&#x27;).forEach((b,j)=&gt;{b.classList.toggle(&#x27;is-active&#x27;,j===i);b.setAttribute(&#x27;aria-pressed&#x27;,j===i?&#x27;true&#x27;:&#x27;false&#x27;);}); iemOne(&#x27;#iem-node-stage&#x27;).textContent=`STAGE ${i+1}`; iemOne(&#x27;#iem-node-title&#x27;).textContent=n.title; iemOne(&#x27;#iem-node-resource&#x27;).textContent=n.resource; iemOne(&#x27;#iem-node-why&#x27;).textContent=n.why; iemOne(&#x27;#iem-node-watch&#x27;).textContent=n.watch; iemOne(&#x27;#iem-node-fail&#x27;).textContent=n.fail; }
+  flow.addEventListener(&#x27;click&#x27;,e=&gt;{const b=e.target.closest(&#x27;[data-node]&#x27;);if(b)showNode(+b.dataset.node);});
+
+  const modeCopy = {
+    Explorer:[&#x27;Why it exists&#x27;,&#x27;Watch&#x27;,&#x27;Typical failure&#x27;],
+    Hardware:[&#x27;Dominant resource&#x27;,&#x27;Hardware counter&#x27;,&#x27;Hardware failure&#x27;],
+    Code:[&#x27;Runtime object&#x27;,&#x27;Instrument here&#x27;,&#x27;Implementation trap&#x27;],
+    Performance:[&#x27;Bottleneck hypothesis&#x27;,&#x27;Confirm with&#x27;,&#x27;Optimization risk&#x27;],
+    Production:[&#x27;SLO responsibility&#x27;,&#x27;Operational signal&#x27;,&#x27;Incident pattern&#x27;],
+    Interview:[&#x27;Explain from first principles&#x27;,&#x27;Quantify next&#x27;,&#x27;Challenge assumption&#x27;]
+  };
+  iemAll(&#x27;[data-mode]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;{
+    iemAll(&#x27;[data-mode]&#x27;).forEach(x=&gt;x.classList.toggle(&#x27;btn-primary&#x27;,x===b));
+    iemOne(&#x27;#iem-module-mode&#x27;).textContent=`${b.dataset.mode.toUpperCase()} MODE`;
+    const h=modeCopy[b.dataset.mode]; const boxes=iemAll(&#x27;.iem-node-detail .iem-triad strong&#x27;); boxes.forEach((x,i)=&gt;x.textContent=h[i]);
+  }));
+
+  const lanes = [
+    {name:&#x27;Request A&#x27;, phases:[&#x27;prefill&#x27;,&#x27;prefill&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;]},
+    {name:&#x27;Request B&#x27;, phases:[&#x27;&#x27;,&#x27;&#x27;,&#x27;prefill&#x27;,&#x27;prefill&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;]},
+    {name:&#x27;Request C&#x27;, phases:[&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;decode&#x27;,&#x27;&#x27;]}
+  ];
+  let tick=0;
+  function renderTimeline(){
+    iemOne(&#x27;#iem-timeline&#x27;).innerHTML=lanes.map(l=&gt;`&lt;div class=&quot;iem-time-axis&quot;&gt;&lt;span class=&quot;iem-time-label text-small&quot;&gt;${l.name}&lt;/span&gt;${l.phases.map((p,i)=&gt;`&lt;span class=&quot;iem-slot ${p}${i===tick?&#x27; active&#x27;:&#x27;&#x27;}&quot; aria-label=&quot;${l.name}, tick ${i+1}, ${p||&#x27;idle&#x27;}&quot;&gt;&lt;/span&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;`).join(&#x27;&#x27;);
+    const messages=[&#x27;A enters prefill.&#x27;,&#x27;A fills KV pages.&#x27;,&#x27;B prefills while A decodes.&#x27;,&#x27;Mixed prefill/decode competes for token budget.&#x27;,&#x27;C joins; active decode batch grows.&#x27;,&#x27;Decode is efficient as sequences share weight reads.&#x27;,&#x27;A nears completion.&#x27;,&#x27;B and C continue without waiting for A.&#x27;,&#x27;A leaves; its KV blocks return to the pool.&#x27;,&#x27;B leaves; batch shrinks.&#x27;,&#x27;Only C remains.&#x27;,&#x27;Scheduler waits for new work.&#x27;];
+    iemOne(&#x27;#iem-tick-label&#x27;).textContent=`Tick ${tick+1}: ${messages[tick]}`;
+  }
+  iemOne(&#x27;#iem-step-next&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{tick=(tick+1)%12;renderTimeline();});
+  iemOne(&#x27;#iem-step-prev&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{tick=(tick+11)%12;renderTimeline();});
+  renderTimeline();
+
+  function updateBig(){
+    const p=+iemOne(&#x27;#iem-big-model&#x27;).value, prompt=+iemOne(&#x27;#iem-big-prompt&#x27;).value, batch=+iemOne(&#x27;#iem-big-batch&#x27;).value, bytes=+iemOne(&#x27;#iem-big-precision&#x27;).value;
+    iemOne(&#x27;#iem-big-model-out&#x27;).textContent=`${p}B`; iemOne(&#x27;#iem-big-prompt-out&#x27;).textContent=`${prompt} tokens`; iemOne(&#x27;#iem-big-batch-out&#x27;).textContent=batch;
+    iemOne(&#x27;#iem-big-weights&#x27;).textContent=fmtBytes(p*1e9*bytes);
+    const ttft=18+(p/7)*28+(prompt/1024)*(12+2.2*batch); const tpot=3.2+(p/7)*4.8/(1+Math.log2(batch)*.28);
+    iemOne(&#x27;#iem-big-ttft&#x27;).textContent=`${fmt(ttft,0)} ms`; iemOne(&#x27;#iem-big-tpot&#x27;).textContent=`${fmt(tpot,1)} ms`;
+  }
+  [&#x27;iem-big-model&#x27;,&#x27;iem-big-prompt&#x27;,&#x27;iem-big-batch&#x27;,&#x27;iem-big-precision&#x27;].forEach(id=&gt;iemOne(&#x27;#&#x27;+id).addEventListener(&#x27;input&#x27;,updateBig)); updateBig();
+
+  iemAll(&#x27;[data-sim]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;{
+    iemAll(&#x27;[data-sim]&#x27;).forEach(x=&gt;x.classList.toggle(&#x27;btn-primary&#x27;,x===b));
+    iemAll(&#x27;[data-sim-panel]&#x27;).forEach(p=&gt;p.classList.toggle(&#x27;iem-hidden&#x27;,p.dataset.simPanel!==b.dataset.sim));
+  }));
+  function updateKV(){
+    const L=+iemOne(&#x27;#kv-layers&#x27;).value,H=+iemOne(&#x27;#kv-heads&#x27;).value,D=+iemOne(&#x27;#kv-dim&#x27;).value,S=+iemOne(&#x27;#kv-seq&#x27;).value,B=+iemOne(&#x27;#kv-batch&#x27;).value,Y=+iemOne(&#x27;#kv-bytes&#x27;).value;
+    iemOne(&#x27;#kv-layers-out&#x27;).textContent=L;iemOne(&#x27;#kv-heads-out&#x27;).textContent=H;iemOne(&#x27;#kv-dim-out&#x27;).textContent=D;iemOne(&#x27;#kv-seq-out&#x27;).textContent=`${S} tokens`;iemOne(&#x27;#kv-batch-out&#x27;).textContent=B;
+    const perToken=L*H*D*2*Y,total=perToken*S*B,pages=Math.ceil(S/16)*B;
+    iemOne(&#x27;#kv-total&#x27;).textContent=fmtBytes(total);iemOne(&#x27;#kv-per-token&#x27;).textContent=fmtBytes(perToken);iemOne(&#x27;#kv-pages&#x27;).textContent=fmt(pages,0);
+    const vram=80e9, weights=14e9, runtime=4e9, free=Math.max(0,vram-weights-runtime-total); const segs=[[&#x27;weights&#x27;,&#x27;Weights&#x27;,weights],[&#x27;kv&#x27;,&#x27;KV cache&#x27;,Math.min(total,vram)],[&#x27;runtime&#x27;,&#x27;Runtime&#x27;,runtime],[&#x27;free&#x27;,&#x27;Free&#x27;,free]];
+    iemOne(&#x27;#kv-stack&#x27;).innerHTML=segs.map(([c,n,v])=&gt;`&lt;div class=&quot;iem-memory-segment ${c}&quot; style=&quot;height:${clamp(v/vram*100,7,100)}%&quot;&gt;&lt;span class=&quot;text-small&quot;&gt;${n}&lt;br&gt;${fmtBytes(v)}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+    iemOne(&#x27;#kv-observation&#x27;).textContent=total&gt;61e9?&#x27;This configuration exceeds the illustrative 61 GB cache budget: admission, shorter context, fewer KV heads, more GPUs, or lower KV precision is required.&#x27;:`Each extra generated token adds ${fmtBytes(perToken*B)} across the active batch.`;
+  }
+  [&#x27;kv-layers&#x27;,&#x27;kv-heads&#x27;,&#x27;kv-dim&#x27;,&#x27;kv-seq&#x27;,&#x27;kv-batch&#x27;,&#x27;kv-bytes&#x27;].forEach(id=&gt;iemOne(&#x27;#&#x27;+id).addEventListener(&#x27;input&#x27;,updateKV)); updateKV();
+
+  function updatePD(){
+    const P=+iemOne(&#x27;#pd-prompt&#x27;).value,O=+iemOne(&#x27;#pd-output&#x27;).value,B=+iemOne(&#x27;#pd-batch&#x27;).value,M=+iemOne(&#x27;#pd-model&#x27;).value;
+    iemOne(&#x27;#pd-prompt-out&#x27;).textContent=P;iemOne(&#x27;#pd-output-out&#x27;).textContent=O;iemOne(&#x27;#pd-batch-out&#x27;).textContent=B;iemOne(&#x27;#pd-model-out&#x27;).textContent=`${M}B`;
+    const prefill=2*M*1e9*P*B, decode=2*M*1e9*O*B;
+    iemOne(&#x27;#pd-prefill-work&#x27;).textContent=`${fmt(prefill/1e15,1)} PFLOP`;iemOne(&#x27;#pd-decode-steps&#x27;).textContent=fmt(O,0);
+    const ratio=P/(O*8); const bound=ratio&gt;1.5?&#x27;Compute first&#x27;:ratio&lt;.5?&#x27;Bandwidth first&#x27;:&#x27;Mixed&#x27;;iemOne(&#x27;#pd-bound&#x27;).textContent=bound;
+    const max=Math.max(prefill,decode);iemOne(&#x27;#pd-prefill-bar&#x27;).style.width=`${clamp(prefill/max*100,2,100)}%`;iemOne(&#x27;#pd-decode-bar&#x27;).style.width=`${clamp(decode/max*100,2,100)}%`;
+    iemOne(&#x27;#pd-prefill-label&#x27;).textContent=`${fmt(prefill/1e15,1)} PFLOP`;iemOne(&#x27;#pd-decode-label&#x27;).textContent=`${fmt(decode/1e15,1)} PFLOP total`;
+    iemOne(&#x27;#pd-observation&#x27;).textContent=`Prefill exposes ${fmt(P*B,0)} tokens to large matrix operations. Decode is ${O} serial steps; batching ${B} sequences amortizes each weight read across more tokens.`;
+  }
+  [&#x27;pd-prompt&#x27;,&#x27;pd-output&#x27;,&#x27;pd-batch&#x27;,&#x27;pd-model&#x27;].forEach(id=&gt;iemOne(&#x27;#&#x27;+id).addEventListener(&#x27;input&#x27;,updatePD)); updatePD();
+
+  function updateQ(){
+    const M=+iemOne(&#x27;#q-model&#x27;).value,V=+iemOne(&#x27;#q-vram&#x27;).value;iemOne(&#x27;#q-model-out&#x27;).textContent=`${M}B`;iemOne(&#x27;#q-vram-out&#x27;).textContent=`${V} GB`;
+    const formats=[[&#x27;FP32&#x27;,4,&#x27;baseline quality&#x27;],[&#x27;BF16&#x27;,2,&#x27;common baseline&#x27;],[&#x27;FP8 / INT8&#x27;,1,&#x27;kernel + calibration dependent&#x27;],[&#x27;INT4&#x27;,.5,&#x27;largest quality risk&#x27;]];
+    iemOne(&#x27;#q-bars&#x27;).innerHTML=formats.map(([n,b,note])=&gt;{const gb=M*b,pct=clamp(gb/(M*4)*100,2,100),fit=Math.ceil(gb/V);return `&lt;div&gt;&lt;div class=&quot;iem-bar-label&quot;&gt;&lt;span&gt;${n} · ${fmt(gb,1)} GB&lt;/span&gt;&lt;span&gt;${fit} × ${V} GB GPU${fit&gt;1?&#x27;s&#x27;:&#x27;&#x27;} minimum*&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;iem-bar-track&quot;&gt;&lt;div class=&quot;iem-bar-fill${b===2?&#x27; alt&#x27;:b===1?&#x27; third&#x27;:&#x27;&#x27;}&quot; style=&quot;width:${pct}%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;text-muted text-small&quot;&gt;${note}&lt;/div&gt;&lt;/div&gt;`}).join(&#x27;&#x27;);
+  }
+  [&#x27;q-model&#x27;,&#x27;q-vram&#x27;].forEach(id=&gt;iemOne(&#x27;#&#x27;+id).addEventListener(&#x27;input&#x27;,updateQ));updateQ();
+
+  function updateTP(){
+    const M=+iemOne(&#x27;#tp-model&#x27;).value,N=+iemOne(&#x27;#tp-degree&#x27;).value,L=+iemOne(&#x27;#tp-link&#x27;).value,T=+iemOne(&#x27;#tp-tokens&#x27;).value;
+    iemOne(&#x27;#tp-model-out&#x27;).textContent=`${M}B`;iemOne(&#x27;#tp-degree-out&#x27;).textContent=N;iemOne(&#x27;#tp-link-out&#x27;).textContent=`${L} GB/s`;iemOne(&#x27;#tp-tokens-out&#x27;).textContent=T;
+    const mem=M*2/N, commPenalty=(N-1)/N*(180/L)*(32/Math.max(T,1)),eff=clamp(1/(1+commPenalty),.12,.99),speed=N*eff;
+    iemOne(&#x27;#tp-memory&#x27;).textContent=`${fmt(mem,1)} GB`;iemOne(&#x27;#tp-ideal&#x27;).textContent=`${N.toFixed(1)}×`;iemOne(&#x27;#tp-eff&#x27;).textContent=`${fmt(eff*100,0)}% · ${fmt(speed,1)}×`;
+    iemOne(&#x27;#tp-gpus&#x27;).innerHTML=Array.from({length:N},(_,i)=&gt;`&lt;div class=&quot;iem-gpu&quot;&gt;&lt;strong&gt;GPU ${i}&lt;/strong&gt;&lt;span&gt;1/${N} weights&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;${fmt(mem,1)} GB&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+    iemOne(&#x27;#tp-observation&#x27;).textContent=N===1?&#x27;No tensor-parallel communication, but the whole model must fit and execute on one GPU.&#x27;:`Every sharded layer needs collective communication. Faster links and more batch tokens improve the compute-to-communication ratio; crossing nodes can reverse scaling.`;
+  }
+  [&#x27;tp-model&#x27;,&#x27;tp-degree&#x27;,&#x27;tp-link&#x27;,&#x27;tp-tokens&#x27;].forEach(id=&gt;iemOne(&#x27;#&#x27;+id).addEventListener(&#x27;input&#x27;,updateTP));updateTP();
+
+  function updateSC(){
+    const A=+iemOne(&#x27;#sc-arrival&#x27;).value,O=+iemOne(&#x27;#sc-output&#x27;).value,B=+iemOne(&#x27;#sc-batch&#x27;).value,P=iemOne(&#x27;#sc-policy&#x27;).value;
+    iemOne(&#x27;#sc-arrival-out&#x27;).textContent=`${A} req/s`;iemOne(&#x27;#sc-output-out&#x27;).textContent=`${O} tokens`;iemOne(&#x27;#sc-batch-out&#x27;).textContent=B;
+    const mult=P===&#x27;continuous&#x27;?1:P===&#x27;static&#x27;?.72:.58; const capacity=(6200/O)*(1-Math.exp(-B/18))*mult+1; const util=clamp(A/capacity,0,1.25),queue=Math.max(0,(A-capacity)*10);
+    iemOne(&#x27;#sc-util&#x27;).textContent=`${fmt(Math.min(util,1)*100,0)}%`;iemOne(&#x27;#sc-queue&#x27;).textContent=queue&lt;.5?&#x27;stable&#x27;:`${fmt(queue,0)} req`;iemOne(&#x27;#sc-p99&#x27;).textContent=util&lt;.7?&#x27;healthy&#x27;:util&lt;.95?&#x27;rising&#x27;:&#x27;unstable&#x27;;
+    const max=Math.max(A,capacity);iemOne(&#x27;#sc-demand-bar&#x27;).style.width=`${A/max*100}%`;iemOne(&#x27;#sc-capacity-bar&#x27;).style.width=`${capacity/max*100}%`;iemOne(&#x27;#sc-demand-label&#x27;).textContent=`${A} req/s`;iemOne(&#x27;#sc-capacity-label&#x27;).textContent=`${fmt(capacity,1)} req/s`;
+    iemOne(&#x27;#sc-observation&#x27;).textContent=util&gt;=1?&#x27;Demand exceeds modeled service rate. Queue time grows without bound until admission control, more capacity, less work per request, or load shedding intervenes.&#x27;:util&gt;.8?&#x27;Near saturation, average throughput still looks good while p99 becomes sensitive to bursts and long requests.&#x27;:&#x27;There is headroom for bursts; verify that the latency SLO still holds at this operating point.&#x27;;
+  }
+  [&#x27;sc-arrival&#x27;,&#x27;sc-output&#x27;,&#x27;sc-batch&#x27;,&#x27;sc-policy&#x27;].forEach(id=&gt;iemOne(&#x27;#&#x27;+id).addEventListener(&#x27;input&#x27;,updateSC));updateSC();
+
+  const metrics=[
+    [&#x27;TTFT&#x27;,&#x27;Arrival → first token&#x27;,&#x27;User-perceived responsiveness&#x27;,&#x27;Can look good while later tokens crawl&#x27;],
+    [&#x27;TPOT&#x27;,&#x27;Decode duration ÷ output intervals&#x27;,&#x27;Steady generation cadence&#x27;,&#x27;Average hides jitter and stalls&#x27;],
+    [&#x27;ITL&#x27;,&#x27;Gap between adjacent streamed tokens&#x27;,&#x27;Streaming smoothness&#x27;,&#x27;Includes serving and transport effects&#x27;],
+    [&#x27;E2E&#x27;,&#x27;Arrival → final token&#x27;,&#x27;Total user wait&#x27;,&#x27;Confounded by output length&#x27;],
+    [&#x27;Output tok/s&#x27;,&#x27;Completed output tokens ÷ wall time&#x27;,&#x27;Useful work rate&#x27;,&#x27;Meaningless without load and lengths&#x27;],
+    [&#x27;Requests/s&#x27;,&#x27;Completed requests ÷ wall time&#x27;,&#x27;Business transaction capacity&#x27;,&#x27;Short requests dominate the number&#x27;],
+    [&#x27;Queue time&#x27;,&#x27;Admitted execution − arrival&#x27;,&#x27;Demand/capacity mismatch&#x27;,&#x27;Low average can hide aged requests&#x27;],
+    [&#x27;GPU utilization&#x27;,&#x27;Time GPU reports active&#x27;,&#x27;Whether device is busy&#x27;,&#x27;Busy can be inefficient or stalled&#x27;],
+    [&#x27;SM utilization&#x27;,&#x27;Active SM cycles / elapsed&#x27;,&#x27;Compute scheduling occupancy&#x27;,&#x27;Does not prove tensor-core efficiency&#x27;],
+    [&#x27;Bandwidth utilization&#x27;,&#x27;Measured bytes/s ÷ peak&#x27;,&#x27;Memory pressure&#x27;,&#x27;Peak spec may not be attainable&#x27;],
+    [&#x27;MFU&#x27;,&#x27;Achieved model FLOPs ÷ peak&#x27;,&#x27;Compute efficiency proxy&#x27;,&#x27;FLOP counting and sparsity assumptions vary&#x27;],
+    [&#x27;p99&#x27;,&#x27;99% complete below this value&#x27;,&#x27;Tail-risk and SLO view&#x27;,&#x27;Needs enough samples and stable windows&#x27;]
+  ];
+  iemOne(&#x27;#iem-metric-grid&#x27;).innerHTML=metrics.map(m=&gt;`&lt;div class=&quot;iem-metric&quot;&gt;&lt;strong&gt;${m[0]}&lt;/strong&gt;&lt;span&gt;${m[1]}&lt;/span&gt;&lt;div class=&quot;text-muted text-small&quot;&gt;Why: ${m[2]} · Trap: ${m[3]}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+
+  const scenarios=[
+    {code:&#x27;A&#x27;,title:&#x27;VRAM full, GPU utilization 40%&#x27;,arch:&#x27;1 GPU · paged KV · mixed traffic&#x27;,signals:[[&#x27;Memory&#x27;,&#x27;78 / 80 GB&#x27;,&#x27;Capacity or leak?&#x27;],[&#x27;SM active&#x27;,&#x27;40%&#x27;,&#x27;Why idle cycles?&#x27;],[&#x27;Queue&#x27;,&#x27;low&#x27;,&#x27;Is demand sufficient?&#x27;]],options:[&#x27;Profile request arrival and batch occupancy&#x27;,&#x27;Enable more KV cache immediately&#x27;,&#x27;Add tensor parallelism immediately&#x27;],correct:0,cause:&#x27;The server may be memory-capacity bound but demand/batch occupancy bound for compute. Full VRAM often means reserved weights + KV pool, not active work.&#x27;,confirm:&#x27;Active sequences, batch tokens, scheduler trace, SM and memory-bandwidth timelines.&#x27;,fix:&#x27;Increase safe concurrency or improve batching; resize reservation only after proving it blocks admission.&#x27;},
+    {code:&#x27;B&#x27;,title:&#x27;Excellent TTFT, terrible TPOT&#x27;,arch:&#x27;8B · low prompt load · streaming&#x27;,signals:[[&#x27;TTFT&#x27;,&#x27;110 ms&#x27;,&#x27;Prefill healthy&#x27;],[&#x27;TPOT&#x27;,&#x27;95 ms&#x27;,&#x27;Decode slow&#x27;],[&#x27;HBM BW&#x27;,&#x27;88%&#x27;,&#x27;Likely bound?&#x27;]],options:[&#x27;Inspect decode bandwidth and batch occupancy&#x27;,&#x27;Optimize tokenizer first&#x27;,&#x27;Increase prompt chunk size&#x27;],correct:0,cause:&#x27;Decode repeatedly streams weights for very little token work; low active batch fails to amortize memory traffic.&#x27;,confirm:&#x27;Decode kernel timeline, achieved HBM bandwidth, active sequences per step.&#x27;,fix:&#x27;Continuous batching, higher safe concurrency, lower-bit weights, or a decode-optimized configuration.&#x27;},
+    {code:&#x27;C&#x27;,title:&#x27;Adding GPUs makes inference slower&#x27;,arch:&#x27;TP 8 across two nodes&#x27;,signals:[[&#x27;Compute/GPU&#x27;,&#x27;down 48%&#x27;,&#x27;Expected&#x27;],[&#x27;Collective time&#x27;,&#x27;up 4.2×&#x27;,&#x27;Topology&#x27;],[&#x27;Link&#x27;,&#x27;100 GbE&#x27;,&#x27;Mismatch&#x27;]],options:[&#x27;Measure collective latency by topology&#x27;,&#x27;Raise max sequence length&#x27;,&#x27;Disable streaming&#x27;],correct:0,cause:&#x27;Tensor parallel collectives cross a slow node boundary; communication and synchronization exceed saved compute.&#x27;,confirm:&#x27;NCCL trace, all-reduce duration, topology map, per-rank skew.&#x27;,fix:&#x27;Keep TP within fast domains, use pipeline/data replicas across nodes, or improve interconnect and message overlap.&#x27;},
+    {code:&#x27;D&#x27;,title:&#x27;Batching lifts throughput, destroys latency&#x27;,arch:&#x27;Static batcher · 50 ms window&#x27;,signals:[[&#x27;Throughput&#x27;,&#x27;+71%&#x27;,&#x27;Amortization works&#x27;],[&#x27;Queue wait&#x27;,&#x27;+44 ms&#x27;,&#x27;Batch formation&#x27;],[&#x27;p99 E2E&#x27;,&#x27;+190%&#x27;,&#x27;Tail penalty&#x27;]],options:[&#x27;Split queue time from execution time&#x27;,&#x27;Quantize KV cache&#x27;,&#x27;Increase batching window&#x27;],correct:0,cause:&#x27;The batcher waits to fill and long sequences hold the whole static batch; throughput gain is paid in queue and head-of-line latency.&#x27;,confirm:&#x27;Request trace decomposed into queue, prefill, decode, streaming.&#x27;,fix:&#x27;Continuous/token-level batching, shorter wait windows, length-aware scheduling, SLO-based admission.&#x27;},
+    {code:&#x27;E&#x27;,title:&#x27;Model fits on 8 GPUs, not 4&#x27;,arch:&#x27;70B BF16 · 80 GB GPUs&#x27;,signals:[[&#x27;Weights&#x27;,&#x27;140 GB&#x27;,&#x27;Before overhead&#x27;],[&#x27;KV budget&#x27;,&#x27;160 GB&#x27;,&#x27;Traffic target&#x27;],[&#x27;Runtime&#x27;,&#x27;~20 GB&#x27;,&#x27;Graphs + buffers&#x27;]],options:[&#x27;Build a per-rank memory ledger&#x27;,&#x27;Raise GPU utilization target blindly&#x27;,&#x27;Disable metrics&#x27;],correct:0,cause:&#x27;Fit includes weights, KV cache, temporary activations, communication buffers, graphs, allocator fragmentation, and runtime—not just parameters.&#x27;,confirm:&#x27;Peak and reserved memory by category and rank, including worst prompt/concurrency mix.&#x27;,fix:&#x27;Quantize, shard differently, reduce cache/concurrency/context, or add memory-capable ranks.&#x27;},
+    {code:&#x27;F&#x27;,title:&#x27;Eight replicas underperform four&#x27;,arch:&#x27;8 replicas · shared host + NIC&#x27;,signals:[[&#x27;GPU active&#x27;,&#x27;55% each&#x27;,&#x27;Starved?&#x27;],[&#x27;CPU&#x27;,&#x27;96%&#x27;,&#x27;Shared choke point&#x27;],[&#x27;NIC&#x27;,&#x27;92%&#x27;,&#x27;Contention&#x27;]],options:[&#x27;Profile shared CPU, PCIe, storage, and NIC&#x27;,&#x27;Double replica count&#x27;,&#x27;Increase tensor parallel degree&#x27;],correct:0,cause:&#x27;A shared tokenizer, CPU, PCIe root, storage path, or NIC saturates; more replicas divide the bottleneck and add contention.&#x27;,confirm:&#x27;Host flame graph, per-core saturation, PCIe/NIC counters, request routing skew.&#x27;,fix:&#x27;Shard frontends, pin CPU/NUMA resources, balance routes, separate NIC paths, or stop at the measured saturation point.&#x27;}
+  ];
+  const scenarioList=iemOne(&#x27;#iem-scenario-list&#x27;);
+  scenarios.forEach((s,i)=&gt;{const b=document.createElement(&#x27;button&#x27;);b.type=&#x27;button&#x27;;b.className=`btn${i===0?&#x27; btn-primary&#x27;:&#x27;&#x27;}`;b.dataset.scenario=i;b.textContent=`${s.code} · ${s.title}`;scenarioList.appendChild(b);});
+  let activeScenario=0;
+  function showScenario(i){activeScenario=i;const s=scenarios[i];iemAll(&#x27;[data-scenario]&#x27;).forEach((b,j)=&gt;b.classList.toggle(&#x27;btn-primary&#x27;,j===i));iemOne(&#x27;#lab-code&#x27;).textContent=`SCENARIO ${s.code}`;iemOne(&#x27;#lab-title&#x27;).textContent=s.title;iemOne(&#x27;#lab-architecture&#x27;).textContent=s.arch;iemOne(&#x27;#lab-signals&#x27;).innerHTML=s.signals.map(x=&gt;`&lt;tr&gt;&lt;td&gt;${x[0]}&lt;/td&gt;&lt;td&gt;${x[1]}&lt;/td&gt;&lt;td class=&quot;text-muted&quot;&gt;${x[2]}&lt;/td&gt;&lt;/tr&gt;`).join(&#x27;&#x27;);iemOne(&#x27;#lab-options&#x27;).innerHTML=s.options.map((x,j)=&gt;`&lt;label&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;lab-choice&quot; value=&quot;${j}&quot;&gt;&lt;span&gt;${x}&lt;/span&gt;&lt;/label&gt;`).join(&#x27;&#x27;);iemOne(&#x27;#lab-feedback&#x27;).textContent=&#x27;&#x27;;iemOne(&#x27;#lab-answer&#x27;).classList.remove(&#x27;is-visible&#x27;);iemOne(&#x27;#lab-cause&#x27;).textContent=s.cause;iemOne(&#x27;#lab-confirm&#x27;).textContent=s.confirm;iemOne(&#x27;#lab-fix&#x27;).textContent=s.fix;}
+  scenarioList.addEventListener(&#x27;click&#x27;,e=&gt;{const b=e.target.closest(&#x27;[data-scenario]&#x27;);if(b)showScenario(+b.dataset.scenario);});
+  iemOne(&#x27;#lab-check&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{const c=iemOne(&#x27;input[name=&quot;lab-choice&quot;]:checked&#x27;);if(!c){iemOne(&#x27;#lab-feedback&#x27;).textContent=&#x27;Choose a first test.&#x27;;return;}const s=scenarios[activeScenario];iemOne(&#x27;#lab-feedback&#x27;).textContent=+c.value===s.correct?&#x27;Strong first move: measure the suspected boundary.&#x27;:&#x27;That may matter later, but it skips the fastest discriminating measurement.&#x27;;iemOne(&#x27;#lab-answer&#x27;).classList.add(&#x27;is-visible&#x27;);});showScenario(0);
+
+  const projects=[
+    [&#x27;1&#x27;,&#x27;Run a small Transformer&#x27;,&#x27;Trace tokens → logits → sampled token.&#x27;],[&#x27;2&#x27;,&#x27;Build an inference API&#x27;,&#x27;Separate request handling from model execution.&#x27;],[&#x27;3&#x27;,&#x27;Implement batching&#x27;,&#x27;Measure throughput/latency trade-offs.&#x27;],[&#x27;4&#x27;,&#x27;Stream generation&#x27;,&#x27;Handle cancellation and backpressure.&#x27;],[&#x27;5&#x27;,&#x27;Add KV-aware admission&#x27;,&#x27;Budget memory per active sequence.&#x27;],[&#x27;6&#x27;,&#x27;Benchmark batch sizes&#x27;,&#x27;Find saturation and plot latency distributions.&#x27;],[&#x27;7&#x27;,&#x27;Quantize a model&#x27;,&#x27;Compare memory, kernels, quality, and speed.&#x27;],[&#x27;8&#x27;,&#x27;Deploy with vLLM&#x27;,&#x27;Map engine controls to serving principles.&#x27;],[&#x27;9&#x27;,&#x27;Optimize vLLM&#x27;,&#x27;Profile, hypothesize, tune, and verify.&#x27;],[&#x27;10&#x27;,&#x27;Serve multiple GPUs&#x27;,&#x27;Choose TP/PP/replicas from topology.&#x27;],[&#x27;11&#x27;,&#x27;Build an inference gateway&#x27;,&#x27;Route, rate-limit, shed, and observe load.&#x27;],[&#x27;12&#x27;,&#x27;Design the platform&#x27;,&#x27;Rollouts, autoscaling, SLOs, and failures.&#x27;]
+  ];
+  iemOne(&#x27;#iem-project-grid&#x27;).innerHTML=projects.map((p,i)=&gt;`&lt;div class=&quot;iem-project&quot;&gt;&lt;div class=&quot;iem-project-head&quot;&gt;&lt;strong&gt;Project ${p[0]} · ${p[1]}&lt;/strong&gt;&lt;span class=&quot;iem-stage-dot ${i===0?&#x27;current&#x27;:&#x27;future&#x27;}&quot; aria-label=&quot;${i===0?&#x27;current&#x27;:&#x27;future&#x27;}&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;${p[2]}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+  iemOne(&#x27;#iem-capstone&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;iemOne(&#x27;#iem-capstone-brief&#x27;).classList.toggle(&#x27;is-visible&#x27;));
+
+  if (window.lucide) window.lucide.createIcons({attrs:{width:16,height:16}});
+})();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
