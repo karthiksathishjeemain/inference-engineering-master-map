@@ -1706,6 +1706,70 @@ html&gt;body{padding:0}&lt;/style&gt;
     #iem-platform .iem-project-brief { display: grid; gap: 10px; margin-top: 16px; }
     #iem-platform .iem-project-brief &gt; div { border-left: 2px solid var(--border); padding-left: 12px; }
     #iem-platform .iem-project-brief strong { display: block; margin-bottom: 3px; }
+    #iem-platform .m2-token-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+    #iem-platform .m2-token {
+      display: inline-grid;
+      gap: 2px;
+      padding: 7px 9px;
+      background: color-mix(in srgb, var(--iem-s1) 12%, transparent);
+      border-bottom: 2px solid color-mix(in srgb, var(--iem-s1) 55%, transparent);
+    }
+    #iem-platform .m2-token span:last-child { color: var(--muted-foreground); }
+    #iem-platform .m2-forward {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(78px, 1fr));
+      gap: 5px;
+      margin: 14px 0;
+    }
+    #iem-platform .m2-forward .btn { min-height: 76px; text-align: center; justify-content: center; }
+    #iem-platform .m2-shape { font-family: var(--font-mono); color: var(--muted-foreground); }
+    #iem-platform .m2-attention-grid {
+      display: grid;
+      gap: 4px;
+      margin: 14px 0;
+      align-items: stretch;
+    }
+    #iem-platform .m2-attn-cell {
+      min-height: 44px;
+      display: grid;
+      place-items: center;
+      padding: 5px;
+      background: color-mix(in srgb, var(--iem-s1) 12%, transparent);
+      font-variant-numeric: tabular-nums;
+    }
+    #iem-platform .m2-attn-cell.masked { background: color-mix(in srgb, var(--muted) 65%, transparent); color: var(--muted-foreground); }
+    #iem-platform .m2-attn-head { display: grid; place-items: center; min-height: 34px; color: var(--muted-foreground); }
+    #iem-platform .m2-mlp-visual { display: grid; grid-template-columns: 1fr auto 2.2fr auto 1fr; gap: 8px; align-items: center; margin: 18px 0; }
+    #iem-platform .m2-vector {
+      min-height: 110px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 9px;
+      background: color-mix(in srgb, var(--iem-s1) 13%, transparent);
+      border-bottom: 3px solid var(--iem-s1);
+    }
+    #iem-platform .m2-vector.wide { min-height: 168px; background: color-mix(in srgb, var(--iem-s2) 14%, transparent); border-bottom-color: var(--iem-s2); }
+    #iem-platform .m2-prob-list { display: grid; gap: 10px; margin: 14px 0; }
+    #iem-platform .m2-prob-row { display: grid; grid-template-columns: 100px 1fr 68px; gap: 8px; align-items: center; }
+    #iem-platform .m2-generation { display: flex; gap: 6px; flex-wrap: wrap; min-height: 58px; align-items: center; margin: 14px 0; }
+    #iem-platform .m2-generated { background: color-mix(in srgb, var(--iem-s3) 18%, transparent); border-bottom-color: var(--iem-s3); }
+    #iem-platform .m2-loop {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 5px;
+      margin: 14px 0;
+    }
+    #iem-platform .m2-loop-step {
+      min-height: 68px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 8px;
+      background: color-mix(in srgb, var(--iem-s1) 8%, transparent);
+      border-bottom: 2px solid color-mix(in srgb, var(--iem-s1) 42%, transparent);
+    }
+    #iem-platform .m2-loop-step.is-active { background: var(--primary); color: var(--primary-foreground); }
     #iem-platform .iem-footnote { margin-top: 18px; color: var(--muted-foreground); }
     #iem-platform .iem-footnote a { color: inherit; }
     #iem-platform .iem-hidden { display: none !important; }
@@ -1722,6 +1786,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       #iem-platform .iem-lesson-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       #iem-platform .iem-concept-grid { grid-template-columns: 1fr; }
       #iem-platform .iem-chain { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      #iem-platform .m2-forward { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      #iem-platform .m2-loop { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (max-width: 470px) {
       #iem-platform .iem-triad,
@@ -1738,6 +1804,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       #iem-platform .iem-matmul &gt; span { text-align: center; }
       #iem-platform .iem-memory-row { grid-template-columns: 74px 1fr; }
       #iem-platform .iem-memory-row &gt; span:last-child { grid-column: 2; }
+      #iem-platform .m2-forward { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #iem-platform .m2-mlp-visual { grid-template-columns: 1fr; }
+      #iem-platform .m2-mlp-visual &gt; span { text-align: center; }
+      #iem-platform .m2-prob-row { grid-template-columns: 72px 1fr 56px; }
+      #iem-platform .m2-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (prefers-reduced-motion: reduce) {
       #iem-platform .iem-progress-fill,
@@ -1748,13 +1819,14 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;/style&gt;
 
   &lt;div class=&quot;iem-topline&quot;&gt;
-    &lt;div class=&quot;iem-kicker&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;FOUNDATION&lt;/span&gt;&lt;span id=&quot;iem-progress-label&quot;&gt;Module 1 available · 13-module course&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;iem-kicker&quot;&gt;&lt;span class=&quot;viz-badge&quot;&gt;FOUNDATION&lt;/span&gt;&lt;span id=&quot;iem-progress-label&quot;&gt;Modules 1–2 available · 13-module course&lt;/span&gt;&lt;/div&gt;
     &lt;div class=&quot;iem-progress-shell&quot; aria-label=&quot;Course progress&quot;&gt;&lt;div class=&quot;iem-progress-fill&quot; id=&quot;iem-progress-fill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
   &lt;/div&gt;
 
   &lt;nav class=&quot;iem-nav&quot; aria-label=&quot;Learning platform sections&quot;&gt;
     &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; data-view=&quot;map&quot; aria-pressed=&quot;true&quot;&gt;Master map&lt;/button&gt;
     &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;module&quot; aria-pressed=&quot;false&quot;&gt;Module 1&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;module2&quot; aria-pressed=&quot;false&quot;&gt;Module 2&lt;/button&gt;
     &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;sim&quot; aria-pressed=&quot;false&quot;&gt;Simulators&lt;/button&gt;
     &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;metrics&quot; aria-pressed=&quot;false&quot;&gt;Metrics&lt;/button&gt;
     &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-view=&quot;labs&quot; aria-pressed=&quot;false&quot;&gt;Debug lab&lt;/button&gt;
@@ -2022,9 +2094,199 @@ flops = 2 * tokens * hidden * out&lt;/code&gt;&lt;/pre&gt;
       &lt;p class=&quot;text-muted&quot; id=&quot;m1-complete-status&quot;&gt;Score at least 4/5 before marking the module complete.&lt;/p&gt;
     &lt;/article&gt;
 
+    &lt;article class=&quot;iem-lesson-panel&quot; data-m2-lesson-panel=&quot;1&quot;&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;FORWARD PASS&lt;/span&gt;&lt;h3&gt;One token tensor crosses every Transformer layer&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;20–25 min&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-learning-copy&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;Intuition:&lt;/strong&gt; every layer reads the current hidden states, mixes information across positions with attention, transforms each position with an MLP, and uses residual connections to preserve a clean information path.&lt;/p&gt;
+        &lt;p&gt;Select a stage to see its tensor shape, operation, hardware behavior, and failure mode.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;m2-forward&quot; id=&quot;m2-forward-flow&quot; aria-label=&quot;Transformer forward pass&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;card&quot; aria-live=&quot;polite&quot;&gt;
+        &lt;div class=&quot;iem-node-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot; id=&quot;m2-forward-index&quot;&gt;STAGE 1&lt;/span&gt;&lt;h3 id=&quot;m2-forward-title&quot;&gt;Embeddings&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;m2-shape&quot; id=&quot;m2-forward-shape&quot;&gt;[B, S, H]&lt;/span&gt;&lt;/div&gt;
+        &lt;p id=&quot;m2-forward-copy&quot;&gt;&lt;/p&gt;
+        &lt;div class=&quot;iem-triad&quot;&gt;
+          &lt;div&gt;&lt;strong&gt;Tensor operation&lt;/strong&gt;&lt;span id=&quot;m2-forward-op&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;strong&gt;Hardware view&lt;/strong&gt;&lt;span id=&quot;m2-forward-hardware&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;strong&gt;Common failure&lt;/strong&gt;&lt;span id=&quot;m2-forward-fail&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;pre class=&quot;iem-code&quot;&gt;&lt;code&gt;with torch.inference_mode():
+    hidden = embedding(input_ids)
+    for block in transformer_blocks:
+        hidden = block(hidden)
+    logits = lm_head(final_norm(hidden))&lt;/code&gt;&lt;/pre&gt;
+      &lt;div class=&quot;iem-equation&quot;&gt;&lt;span&gt;residual stream&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;+&lt;/span&gt;&lt;span&gt;attention update&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;+&lt;/span&gt;&lt;span&gt;MLP update&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;richer token representations&lt;/span&gt;&lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;article class=&quot;iem-lesson-panel&quot; data-m2-lesson-panel=&quot;2&quot;&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;CAUSAL SELF-ATTENTION&lt;/span&gt;&lt;h3&gt;Each token retrieves relevant earlier information&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;25–30 min&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-learning-copy&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;Mental model:&lt;/strong&gt; the query asks a question, keys describe what each position offers, and values carry the information returned. Causal masking prevents a position from reading future tokens.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;viz-controls&quot;&gt;
+        &lt;label class=&quot;form-label&quot;&gt;Focus query position&lt;select class=&quot;form-select&quot; id=&quot;m2-query-position&quot;&gt;&lt;option value=&quot;0&quot;&gt;0 · The&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;1 · model&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;2 · predicts&lt;/option&gt;&lt;option value=&quot;3&quot; selected&gt;3 · tokens&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+        &lt;label class=&quot;form-label&quot;&gt;Softmax temperature &lt;span id=&quot;m2-attn-temp-out&quot;&gt;1.0&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;m2-attn-temp&quot; type=&quot;range&quot; min=&quot;0.4&quot; max=&quot;2&quot; value=&quot;1&quot; step=&quot;0.1&quot;&gt;&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-equation&quot;&gt;&lt;span&gt;Attention(Q,K,V)&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;=&lt;/span&gt;&lt;span&gt;softmax((QKᵀ / √d) + causal mask) V&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;m2-attention-grid&quot; id=&quot;m2-attention-grid&quot; aria-label=&quot;Causal attention matrix&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;card&quot; aria-live=&quot;polite&quot; id=&quot;m2-attn-observation&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Tensor view&lt;/strong&gt;&lt;span&gt;Q, K, and V are projections of hidden states, commonly reshaped to [batch, heads, sequence, head dimension].&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Hardware view&lt;/strong&gt;&lt;span&gt;Projection GEMMs create Q/K/V; attention kernels combine score, mask, softmax, and value aggregation while managing memory traffic.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Common mistake&lt;/strong&gt;&lt;span&gt;Attention weights show routing strength, not a complete explanation of model reasoning.&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;article class=&quot;iem-lesson-panel&quot; data-m2-lesson-panel=&quot;3&quot;&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;MLP &amp;amp; RESIDUALS&lt;/span&gt;&lt;h3&gt;Transform each token independently&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;20–25 min&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-learning-copy&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;Why it exists:&lt;/strong&gt; attention moves information between positions; the MLP applies a learned nonlinear transformation to each position. In many decoder models it expands the hidden dimension, gates or activates it, then projects back.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;viz-controls&quot;&gt;
+        &lt;label class=&quot;form-label&quot;&gt;Hidden size H &lt;span id=&quot;m2-hidden-out&quot;&gt;4096&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;m2-hidden&quot; type=&quot;range&quot; min=&quot;512&quot; max=&quot;8192&quot; value=&quot;4096&quot; step=&quot;512&quot;&gt;&lt;/label&gt;
+        &lt;label class=&quot;form-label&quot;&gt;Expansion ratio &lt;span id=&quot;m2-expansion-out&quot;&gt;2.7×&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;m2-expansion&quot; type=&quot;range&quot; min=&quot;2&quot; max=&quot;4&quot; value=&quot;2.7&quot; step=&quot;0.1&quot;&gt;&lt;/label&gt;
+        &lt;label class=&quot;form-label&quot;&gt;Tokens processed &lt;span id=&quot;m2-mlp-tokens-out&quot;&gt;32&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;m2-mlp-tokens&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;256&quot; value=&quot;32&quot;&gt;&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;m2-mlp-visual&quot; aria-label=&quot;MLP expansion and contraction&quot;&gt;
+        &lt;div class=&quot;m2-vector&quot;&gt;&lt;strong id=&quot;m2-mlp-input&quot;&gt;H = 4096&lt;/strong&gt;&lt;span&gt;residual input&lt;/span&gt;&lt;/div&gt;&lt;span&gt;project + gate&lt;/span&gt;
+        &lt;div class=&quot;m2-vector wide&quot;&gt;&lt;strong id=&quot;m2-mlp-wide&quot;&gt;I = 11059&lt;/strong&gt;&lt;span&gt;intermediate activation&lt;/span&gt;&lt;/div&gt;&lt;span&gt;project down&lt;/span&gt;
+        &lt;div class=&quot;m2-vector&quot;&gt;&lt;strong&gt;H&lt;/strong&gt;&lt;span&gt;residual update&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-stats&quot;&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Approx. MLP parameters&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-mlp-params&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;gated three-matrix form&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Work per layer&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-mlp-flops&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;selected token count&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Activation elements&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-mlp-elements&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;tokens × intermediate&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;pre class=&quot;iem-code&quot;&gt;&lt;code&gt;# Gated MLP, simplified
+gate = silu(x @ W_gate)
+up   = x @ W_up
+update = (gate * up) @ W_down
+x = x + update  # residual connection&lt;/code&gt;&lt;/pre&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Residual path&lt;/strong&gt;&lt;span&gt;The block learns an update instead of replacing the whole representation, improving information and gradient flow.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Performance&lt;/strong&gt;&lt;span&gt;Large projection matrices make the MLP a major share of model parameters and FLOPs.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Debugging&lt;/strong&gt;&lt;span&gt;Shape mismatches, unsupported fused activations, or precision overflow can break this otherwise regular path.&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;article class=&quot;iem-lesson-panel&quot; data-m2-lesson-panel=&quot;4&quot;&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;LOGITS &amp;amp; SAMPLING&lt;/span&gt;&lt;h3&gt;Scores become a next-token decision&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;20–25 min&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-learning-copy&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;Intuition:&lt;/strong&gt; the LM head projects the final hidden state into one score per vocabulary item. Softmax converts relative logits into probabilities; the decoding rule chooses the next token.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;viz-controls&quot;&gt;
+        &lt;label class=&quot;form-label&quot;&gt;Temperature &lt;span id=&quot;m2-temp-out&quot;&gt;1.0&lt;/span&gt;&lt;input class=&quot;form-range&quot; id=&quot;m2-temp&quot; type=&quot;range&quot; min=&quot;0.2&quot; max=&quot;2&quot; value=&quot;1&quot; step=&quot;0.1&quot;&gt;&lt;/label&gt;
+        &lt;label class=&quot;form-label&quot;&gt;Top-k&lt;select class=&quot;form-select&quot; id=&quot;m2-top-k&quot;&gt;&lt;option value=&quot;1&quot;&gt;1 · greedy&lt;/option&gt;&lt;option value=&quot;3&quot; selected&gt;3&lt;/option&gt;&lt;option value=&quot;5&quot;&gt;5 · all shown&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-equation&quot;&gt;&lt;span&gt;p(token i)&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;=&lt;/span&gt;&lt;span&gt;exp(logitᵢ / T) ÷ Σⱼ exp(logitⱼ / T)&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;m2-prob-list&quot; id=&quot;m2-prob-list&quot; aria-label=&quot;Candidate token probabilities&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-question-actions&quot;&gt;&lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;m2-sample&quot;&gt;Sample next token&lt;/button&gt;&lt;span class=&quot;text-muted&quot; id=&quot;m2-sampled-token&quot; aria-live=&quot;polite&quot;&gt;No token sampled yet.&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Temperature&lt;/strong&gt;&lt;span&gt;Lower values sharpen differences; higher values flatten the distribution. Temperature does not change the model weights.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Top-k&lt;/strong&gt;&lt;span&gt;Discard all but the k highest candidates, renormalize, then sample. k=1 is greedy decoding.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Production implication&lt;/strong&gt;&lt;span&gt;Sampling usually runs after the expensive model step, but large vocabularies and rich decoding constraints still add work.&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;article class=&quot;iem-lesson-panel&quot; data-m2-lesson-panel=&quot;5&quot;&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;AUTOREGRESSIVE GENERATION&lt;/span&gt;&lt;h3&gt;One new token becomes the next input&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;20–25 min&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-learning-copy&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;Mental model:&lt;/strong&gt; generation is a feedback loop. The model predicts one token, the decoder selects it, and that token is appended before the next forward pass. This serial dependency is why output latency behaves differently from prompt processing.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;m2-loop&quot; aria-label=&quot;Autoregressive generation loop&quot;&gt;
+        &lt;div class=&quot;m2-loop-step&quot; data-m2-loop-step=&quot;0&quot;&gt;Input IDs&lt;/div&gt;&lt;div class=&quot;m2-loop-step&quot; data-m2-loop-step=&quot;1&quot;&gt;Forward pass&lt;/div&gt;&lt;div class=&quot;m2-loop-step&quot; data-m2-loop-step=&quot;2&quot;&gt;Last-position logits&lt;/div&gt;&lt;div class=&quot;m2-loop-step&quot; data-m2-loop-step=&quot;3&quot;&gt;Select token&lt;/div&gt;&lt;div class=&quot;m2-loop-step&quot; data-m2-loop-step=&quot;4&quot;&gt;Append &amp;amp; repeat&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;m2-generation&quot; id=&quot;m2-generation&quot; aria-label=&quot;Prompt and generated tokens&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-question-actions&quot;&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;m2-gen-reset&quot;&gt;Reset&lt;/button&gt;&lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;m2-gen-next&quot;&gt;Generate next token&lt;/button&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-stats&quot;&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Forward passes&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-gen-passes&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;one per generated token&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Sequence length&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-gen-length&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;prompt + generated&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Naive history work&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-gen-history&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;positions revisited without cache&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Without reuse&lt;/strong&gt;&lt;span&gt;Every step recomputes representations for the entire prefix. Work grows with the accumulated sequence.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;With KV cache&lt;/strong&gt;&lt;span&gt;Earlier attention keys and values are reused, while the new token still crosses every layer.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Stopping&lt;/strong&gt;&lt;span&gt;Generation ends at an end-of-sequence token, a token limit, a stop sequence, cancellation, or another policy boundary.&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-footnote text-small&quot;&gt;Module 3 will derive prefill, decode, and KV-cache memory in detail.&lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;article class=&quot;iem-lesson-panel&quot; data-m2-lesson-panel=&quot;6&quot;&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;CHECKPOINT&lt;/span&gt;&lt;h3&gt;Trace the complete next-token path&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;25–35 min + project&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;card&quot; aria-live=&quot;polite&quot;&gt;
+        &lt;div class=&quot;iem-node-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot; id=&quot;m2-quiz-count&quot;&gt;QUESTION 1 OF 5&lt;/span&gt;&lt;h3 id=&quot;m2-quiz-question&quot;&gt;Loading…&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot; id=&quot;m2-quiz-score&quot;&gt;Score 0 / 5&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;iem-quiz-options&quot; id=&quot;m2-quiz-options&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;iem-question-actions&quot;&gt;&lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;m2-quiz-check&quot;&gt;Check reasoning&lt;/button&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;m2-quiz-next&quot;&gt;Next question&lt;/button&gt;&lt;/div&gt;
+        &lt;p id=&quot;m2-quiz-feedback&quot;&gt;&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;PROJECT 2&lt;/span&gt;&lt;h3&gt;Build a minimal next-token inference loop&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;3–5 hours&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-project-brief&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Objective&lt;/strong&gt;&lt;span&gt;Load a small causal language model and implement tokenization → forward pass → logits → decoding without using a high-level generate helper.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Architecture&lt;/strong&gt;&lt;span&gt;Tokenizer → input IDs → model forward → last-position logits → decoding policy → append token → stop condition.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Implementation&lt;/strong&gt;&lt;span&gt;Use inference mode, inspect tensor shapes at the embedding, one attention block, final hidden state, and logits. Implement greedy decoding first.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Experiments&lt;/strong&gt;&lt;span&gt;Compare greedy, temperature 0.7, and top-k sampling. Record output, per-token latency, sequence length, and peak memory.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Expected observations&lt;/strong&gt;&lt;span&gt;Different decoding rules change output without changing logits computation; output tokens require serial model steps.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Debugging exercise&lt;/strong&gt;&lt;span&gt;Intentionally select logits from the wrong sequence position and explain why generation becomes incoherent.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Optimization exercise&lt;/strong&gt;&lt;span&gt;Compare naive full-prefix recomputation with the model’s cache-enabled path and measure how per-token latency changes.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Final challenge&lt;/strong&gt;&lt;span&gt;Produce a trace that labels tokenization, attention, MLP, LM head, sampling, and the point where the next token re-enters the loop.&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-equation&quot;&gt;&lt;span&gt;token IDs&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;hidden states&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;logits&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;next token&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;repeat&lt;/span&gt;&lt;/div&gt;
+      &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;m2-complete&quot;&gt;Mark Module 2 complete&lt;/button&gt;
+      &lt;p class=&quot;text-muted&quot; id=&quot;m2-complete-status&quot;&gt;Score at least 4/5 before marking the module complete.&lt;/p&gt;
+    &lt;/article&gt;
+
     &lt;div class=&quot;iem-lesson-actions&quot;&gt;
       &lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;m1-prev&quot;&gt;Previous lesson&lt;/button&gt;
       &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;m1-next&quot;&gt;Next lesson&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;iem-view&quot; data-panel=&quot;module2&quot;&gt;
+    &lt;div class=&quot;iem-section-head&quot;&gt;
+      &lt;div&gt;&lt;h2&gt;Module 2 · Neural network inference&lt;/h2&gt;&lt;div class=&quot;text-muted&quot;&gt;Follow text through Transformer tensors to the next generated token.&lt;/div&gt;&lt;/div&gt;
+      &lt;span class=&quot;viz-badge&quot; id=&quot;iem-module2-step&quot;&gt;LESSON 1 OF 7&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card iem-module-summary&quot;&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Prerequisites&lt;/strong&gt;&lt;span&gt;Module 1, tensors, matrix multiplication&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;You will learn&lt;/strong&gt;&lt;span&gt;Tokenization, attention, MLPs, logits, and generation&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Unlocks&lt;/strong&gt;&lt;span&gt;Prefill, decode, KV cache, and runtime execution&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;iem-lesson-nav&quot; role=&quot;tablist&quot; aria-label=&quot;Module 2 lessons&quot;&gt;
+      &lt;button class=&quot;btn btn-primary iem-lesson-tab&quot; type=&quot;button&quot; data-m2-lesson=&quot;0&quot; aria-selected=&quot;true&quot;&gt;&lt;span&gt;01&lt;/span&gt;&lt;strong&gt;Tokens&lt;/strong&gt;&lt;/button&gt;
+      &lt;button class=&quot;btn iem-lesson-tab&quot; type=&quot;button&quot; data-m2-lesson=&quot;1&quot; aria-selected=&quot;false&quot;&gt;&lt;span&gt;02&lt;/span&gt;&lt;strong&gt;Forward pass&lt;/strong&gt;&lt;/button&gt;
+      &lt;button class=&quot;btn iem-lesson-tab&quot; type=&quot;button&quot; data-m2-lesson=&quot;2&quot; aria-selected=&quot;false&quot;&gt;&lt;span&gt;03&lt;/span&gt;&lt;strong&gt;Attention&lt;/strong&gt;&lt;/button&gt;
+      &lt;button class=&quot;btn iem-lesson-tab&quot; type=&quot;button&quot; data-m2-lesson=&quot;3&quot; aria-selected=&quot;false&quot;&gt;&lt;span&gt;04&lt;/span&gt;&lt;strong&gt;MLP&lt;/strong&gt;&lt;/button&gt;
+      &lt;button class=&quot;btn iem-lesson-tab&quot; type=&quot;button&quot; data-m2-lesson=&quot;4&quot; aria-selected=&quot;false&quot;&gt;&lt;span&gt;05&lt;/span&gt;&lt;strong&gt;Logits&lt;/strong&gt;&lt;/button&gt;
+      &lt;button class=&quot;btn iem-lesson-tab&quot; type=&quot;button&quot; data-m2-lesson=&quot;5&quot; aria-selected=&quot;false&quot;&gt;&lt;span&gt;06&lt;/span&gt;&lt;strong&gt;Generation&lt;/strong&gt;&lt;/button&gt;
+      &lt;button class=&quot;btn iem-lesson-tab&quot; type=&quot;button&quot; data-m2-lesson=&quot;6&quot; aria-selected=&quot;false&quot;&gt;&lt;span&gt;07&lt;/span&gt;&lt;strong&gt;Checkpoint&lt;/strong&gt;&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;article class=&quot;iem-lesson-panel is-active&quot; data-m2-lesson-panel=&quot;0&quot;&gt;
+      &lt;div class=&quot;iem-section-head&quot;&gt;&lt;div&gt;&lt;span class=&quot;viz-badge&quot;&gt;TOKENIZATION&lt;/span&gt;&lt;h3&gt;Text becomes discrete model inputs&lt;/h3&gt;&lt;/div&gt;&lt;span class=&quot;text-muted&quot;&gt;15–20 min&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-learning-copy&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;Why it exists:&lt;/strong&gt; a neural network accepts numeric tensors, not text. A tokenizer maps text into vocabulary IDs; an embedding table maps each ID into a learned vector.&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Mental model:&lt;/strong&gt; tokenization chooses the pieces; embeddings give every piece coordinates in the model’s hidden space. Token boundaries affect sequence length, cost, latency, and what the model can represent.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;label class=&quot;form-label&quot;&gt;Educational tokenizer input&lt;input class=&quot;form-control&quot; id=&quot;m2-token-input&quot; type=&quot;text&quot; value=&quot;Inference engineering turns systems into fast tokens.&quot;&gt;&lt;/label&gt;
+      &lt;div class=&quot;m2-token-list&quot; id=&quot;m2-token-list&quot; aria-label=&quot;Tokenized input&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-stats&quot;&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Characters&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-char-count&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;original text&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Tokens&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-token-count&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;educational segmentation&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;card viz-stat&quot;&gt;&lt;span class=&quot;text-muted&quot;&gt;Embedding tensor&lt;/span&gt;&lt;span class=&quot;viz-stat-value&quot; id=&quot;m2-embed-shape&quot;&gt;—&lt;/span&gt;&lt;span class=&quot;text-muted&quot;&gt;[batch, sequence, hidden]&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;iem-equation&quot;&gt;&lt;span&gt;text&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;token IDs&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;embedding lookup&lt;/span&gt;&lt;span class=&quot;iem-eq-op&quot;&gt;→&lt;/span&gt;&lt;span&gt;[1, sequence, 4096]&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;iem-triad&quot;&gt;
+        &lt;div&gt;&lt;strong&gt;Implementation&lt;/strong&gt;&lt;span&gt;An embedding lookup selects rows from a vocabulary × hidden-size weight matrix.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Performance implication&lt;/strong&gt;&lt;span&gt;More tokens increase attention work, activation memory, KV cache, and user-visible latency.&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;Important caveat&lt;/strong&gt;&lt;span&gt;This demonstrator uses simple segmentation. Production token IDs depend on the exact model tokenizer.&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+
+    &lt;div class=&quot;iem-lesson-actions&quot;&gt;
+      &lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;m2-prev&quot;&gt;Previous lesson&lt;/button&gt;
+      &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; id=&quot;m2-next&quot;&gt;Next lesson&lt;/button&gt;
     &lt;/div&gt;
   &lt;/section&gt;
 
@@ -2185,33 +2447,38 @@ flops = 2 * tokens * hidden * out&lt;/code&gt;&lt;/pre&gt;
   layers.forEach((l, i) =&gt; {
     const b = document.createElement(&#x27;button&#x27;);
     b.type = &#x27;button&#x27;; b.className = `btn iem-layer${i === 0 ? &#x27; is-selected&#x27; : &#x27;&#x27;}`; b.dataset.layer = i; b.setAttribute(&#x27;aria-pressed&#x27;, i === 0 ? &#x27;true&#x27; : &#x27;false&#x27;);
-    b.innerHTML = `&lt;span class=&quot;iem-layer-num&quot;&gt;${String(i).padStart(2,&#x27;0&#x27;)}&lt;/span&gt;&lt;span&gt;${l.name}&lt;/span&gt;&lt;span class=&quot;iem-layer-state&quot;&gt;${i === 0 ? &#x27;●&#x27; : &#x27;○&#x27;}&lt;/span&gt;`;
+    b.innerHTML = `&lt;span class=&quot;iem-layer-num&quot;&gt;${String(i).padStart(2,&#x27;0&#x27;)}&lt;/span&gt;&lt;span&gt;${l.name}&lt;/span&gt;&lt;span class=&quot;iem-layer-state&quot;&gt;${i &lt; 2 ? &#x27;●&#x27; : &#x27;○&#x27;}&lt;/span&gt;`;
     layerList.appendChild(b);
   });
+  let selectedLayer = 0;
   function showLayer(i) {
+    selectedLayer = i;
     const l = layers[i];
     iemAll(&#x27;.iem-layer&#x27;).forEach((b, j) =&gt; { b.classList.toggle(&#x27;is-selected&#x27;, j === i); b.setAttribute(&#x27;aria-pressed&#x27;, j === i ? &#x27;true&#x27;:&#x27;false&#x27;); });
     iemOne(&#x27;#iem-layer-number&#x27;).textContent = `LAYER ${i}`; iemOne(&#x27;#iem-layer-title&#x27;).textContent = l.name; iemOne(&#x27;#iem-layer-difficulty&#x27;).textContent = l.difficulty;
     iemOne(&#x27;#iem-layer-why&#x27;).textContent = l.why; iemOne(&#x27;#iem-layer-prereq&#x27;).textContent = l.prereq; iemOne(&#x27;#iem-layer-question&#x27;).textContent = l.question; iemOne(&#x27;#iem-layer-unlocks&#x27;).textContent = l.unlocks;
     iemOne(&#x27;#iem-layer-topics&#x27;).innerHTML = l.topics.map(t =&gt; `&lt;span class=&quot;iem-chip&quot;&gt;${t}&lt;/span&gt;`).join(&#x27;&#x27;);
-    iemOne(&#x27;#iem-enter-module&#x27;).textContent = i === 0 ? &#x27;Open full Module 1&#x27; : &#x27;Open available Module 1&#x27;;
+    iemOne(&#x27;#iem-enter-module&#x27;).textContent = i === 0 ? &#x27;Open full Module 1&#x27; : i === 1 ? &#x27;Open full Module 2&#x27; : &#x27;Open available Module 2&#x27;;
   }
   layerList.addEventListener(&#x27;click&#x27;, e =&gt; { const b = e.target.closest(&#x27;[data-layer]&#x27;); if (b) showLayer(+b.dataset.layer); });
   showLayer(0);
 
   let activeLesson = 0;
   let moduleComplete = false;
+  let activeLesson2 = 0;
+  let module2Complete = false;
   function switchView(name) {
     iemAll(&#x27;[data-view]&#x27;).forEach(b =&gt; { const on = b.dataset.view === name; b.classList.toggle(&#x27;btn-primary&#x27;, on); b.setAttribute(&#x27;aria-pressed&#x27;, on ? &#x27;true&#x27;:&#x27;false&#x27;); });
     iemAll(&#x27;[data-panel]&#x27;).forEach(p =&gt; p.classList.toggle(&#x27;is-active&#x27;, p.dataset.panel === name));
     if (name === &#x27;module&#x27;) showLesson(activeLesson);
+    else if (name === &#x27;module2&#x27;) showLesson2(activeLesson2);
     else {
-      iemOne(&#x27;#iem-progress-fill&#x27;).style.width = &#x27;8%&#x27;;
-      iemOne(&#x27;#iem-progress-label&#x27;).textContent = name === &#x27;map&#x27; ? &#x27;Module 1 available · 13-module course&#x27; : &#x27;Module 1 available · supporting lab&#x27;;
+      iemOne(&#x27;#iem-progress-fill&#x27;).style.width = &#x27;15%&#x27;;
+      iemOne(&#x27;#iem-progress-label&#x27;).textContent = name === &#x27;map&#x27; ? &#x27;Modules 1–2 available · 13-module course&#x27; : &#x27;Modules 1–2 available · supporting lab&#x27;;
     }
   }
   iemAll(&#x27;[data-view]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; switchView(b.dataset.view)));
-  iemOne(&#x27;#iem-enter-module&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; switchView(&#x27;module&#x27;));
+  iemOne(&#x27;#iem-enter-module&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; switchView(selectedLayer === 1 ? &#x27;module2&#x27; : selectedLayer === 0 ? &#x27;module&#x27; : &#x27;module2&#x27;));
 
   const flowData = [
     {title:&#x27;Request&#x27;, icon:&#x27;send&#x27;, resource:&#x27;CPU · network&#x27;, why:&#x27;Defines prompt, sampling, limits, and deadline.&#x27;, watch:&#x27;arrival rate · payload · deadline&#x27;, fail:&#x27;bursts overwhelm admission&#x27;},
@@ -2390,6 +2657,158 @@ flops = 2 * tokens * hidden * out&lt;/code&gt;&lt;/pre&gt;
     showLesson(6);
   });
   renderModuleQuiz();
+
+  const module2View = iemOne(&#x27;[data-panel=&quot;module2&quot;]&#x27;);
+  const module2Actions = iemOne(&#x27;.iem-lesson-actions&#x27;, module2View);
+  iemAll(&#x27;[data-m2-lesson-panel]&#x27;).sort((a,b) =&gt; +a.dataset.m2LessonPanel - +b.dataset.m2LessonPanel).forEach(panel =&gt; module2Actions.before(panel));
+
+  function showLesson2(i) {
+    activeLesson2 = clamp(i, 0, 6);
+    iemAll(&#x27;[data-m2-lesson]&#x27;).forEach((b, j) =&gt; {
+      const on = j === activeLesson2;
+      b.classList.toggle(&#x27;btn-primary&#x27;, on);
+      b.setAttribute(&#x27;aria-selected&#x27;, on ? &#x27;true&#x27; : &#x27;false&#x27;);
+    });
+    iemAll(&#x27;[data-m2-lesson-panel]&#x27;).forEach((p, j) =&gt; p.classList.toggle(&#x27;is-active&#x27;, j === activeLesson2));
+    iemOne(&#x27;#iem-module2-step&#x27;).textContent = `LESSON ${activeLesson2 + 1} OF 7`;
+    iemOne(&#x27;#m2-prev&#x27;).disabled = activeLesson2 === 0;
+    iemOne(&#x27;#m2-next&#x27;).textContent = activeLesson2 === 6 ? &#x27;Review lesson 1&#x27; : &#x27;Next lesson&#x27;;
+    iemOne(&#x27;#iem-progress-fill&#x27;).style.width = `${module2Complete ? 100 : ((activeLesson2 + 1) / 7) * 100}%`;
+    iemOne(&#x27;#iem-progress-label&#x27;).textContent = module2Complete ? &#x27;Module 2 complete · 2 of 13 modules&#x27; : `Module 2 · Lesson ${activeLesson2 + 1} of 7`;
+  }
+  iemAll(&#x27;[data-m2-lesson]&#x27;).forEach(b =&gt; b.addEventListener(&#x27;click&#x27;, () =&gt; showLesson2(+b.dataset.m2Lesson)));
+  iemOne(&#x27;#m2-prev&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; showLesson2(activeLesson2 - 1));
+  iemOne(&#x27;#m2-next&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; showLesson2(activeLesson2 === 6 ? 0 : activeLesson2 + 1));
+
+  const tokenId = (token) =&gt; Array.from(token).reduce((h, ch) =&gt; (h * 31 + ch.codePointAt(0)) % 32000, 17);
+  function updateTokenizer() {
+    const text = iemOne(&#x27;#m2-token-input&#x27;).value;
+    const tokens = text.match(/\s+|[A-Za-z]+|[0-9]+|[^\sA-Za-z0-9]/g) || [];
+    iemOne(&#x27;#m2-token-list&#x27;).innerHTML = tokens.map(token =&gt; `&lt;span class=&quot;m2-token&quot;&gt;&lt;strong&gt;${/^\s+$/.test(token) ? &#x27;␠&#x27; : token.replaceAll(&#x27;&lt;&#x27;,&#x27;&amp;lt;&#x27;).replaceAll(&#x27;&gt;&#x27;,&#x27;&amp;gt;&#x27;)}&lt;/strong&gt;&lt;span&gt;ID ${tokenId(token)}&lt;/span&gt;&lt;/span&gt;`).join(&#x27;&#x27;);
+    iemOne(&#x27;#m2-char-count&#x27;).textContent = text.length;
+    iemOne(&#x27;#m2-token-count&#x27;).textContent = tokens.length;
+    iemOne(&#x27;#m2-embed-shape&#x27;).textContent = `[1, ${tokens.length}, 4096]`;
+  }
+  iemOne(&#x27;#m2-token-input&#x27;).addEventListener(&#x27;input&#x27;, updateTokenizer); updateTokenizer();
+
+  const forwardStages = [
+    {title:&#x27;Embeddings&#x27;,shape:&#x27;[B, S, H]&#x27;,copy:&#x27;Vocabulary IDs select learned vectors and positional information marks order.&#x27;,op:&#x27;embedding lookup + position encoding&#x27;,hardware:&#x27;memory gather, then elementwise add&#x27;,fail:&#x27;wrong tokenizer or position IDs&#x27;},
+    {title:&#x27;Norm&#x27;,shape:&#x27;[B, S, H]&#x27;,copy:&#x27;Normalization controls scale before the sublayer while preserving each token position.&#x27;,op:&#x27;RMSNorm / LayerNorm&#x27;,hardware:&#x27;reductions + elementwise kernels&#x27;,fail:&#x27;precision instability or extra launches&#x27;},
+    {title:&#x27;QKV&#x27;,shape:&#x27;[B, heads, S, D]&#x27;,copy:&#x27;Three learned projections turn hidden states into queries, keys, and values.&#x27;,op:&#x27;three linear projections&#x27;,hardware:&#x27;GEMMs, often fused or packed&#x27;,fail:&#x27;layout conversion dominates&#x27;},
+    {title:&#x27;Attention&#x27;,shape:&#x27;[B, heads, S, D]&#x27;,copy:&#x27;Causal attention mixes information from allowed earlier positions.&#x27;,op:&#x27;QKᵀ, mask, softmax, ×V&#x27;,hardware:&#x27;specialized attention kernel&#x27;,fail:&#x27;quadratic prompt work or memory traffic&#x27;},
+    {title:&#x27;Residual&#x27;,shape:&#x27;[B, S, H]&#x27;,copy:&#x27;The attention update is added back to the residual stream.&#x27;,op:&#x27;elementwise add&#x27;,hardware:&#x27;bandwidth-oriented fused kernel&#x27;,fail:&#x27;unnecessary reads and writes&#x27;},
+    {title:&#x27;MLP&#x27;,shape:&#x27;[B, S, H]&#x27;,copy:&#x27;Each token is expanded, gated, and projected back independently.&#x27;,op:&#x27;projection + activation + projection&#x27;,hardware:&#x27;large GEMMs + fused activation&#x27;,fail:&#x27;unsupported shape or precision path&#x27;},
+    {title:&#x27;LM head&#x27;,shape:&#x27;[B, S, V]&#x27;,copy:&#x27;The final hidden state is projected to one logit per vocabulary item.&#x27;,op:&#x27;hidden × vocabulary matrix&#x27;,hardware:&#x27;large output projection GEMM&#x27;,fail:&#x27;using the wrong sequence position&#x27;}
+  ];
+  const forwardFlow = iemOne(&#x27;#m2-forward-flow&#x27;);
+  forwardStages.forEach((stage, i) =&gt; {
+    const button = document.createElement(&#x27;button&#x27;); button.type = &#x27;button&#x27;; button.className = `btn${i === 0 ? &#x27; btn-primary&#x27; : &#x27;&#x27;}`; button.dataset.forwardStage = i; button.innerHTML = `&lt;span&gt;${stage.title}&lt;/span&gt;`; forwardFlow.appendChild(button);
+  });
+  function showForwardStage(i) {
+    const stage = forwardStages[i];
+    iemAll(&#x27;[data-forward-stage]&#x27;).forEach((b, j) =&gt; b.classList.toggle(&#x27;btn-primary&#x27;, i === j));
+    iemOne(&#x27;#m2-forward-index&#x27;).textContent = `STAGE ${i + 1}`; iemOne(&#x27;#m2-forward-title&#x27;).textContent = stage.title; iemOne(&#x27;#m2-forward-shape&#x27;).textContent = stage.shape; iemOne(&#x27;#m2-forward-copy&#x27;).textContent = stage.copy; iemOne(&#x27;#m2-forward-op&#x27;).textContent = stage.op; iemOne(&#x27;#m2-forward-hardware&#x27;).textContent = stage.hardware; iemOne(&#x27;#m2-forward-fail&#x27;).textContent = stage.fail;
+  }
+  forwardFlow.addEventListener(&#x27;click&#x27;, e =&gt; { const b = e.target.closest(&#x27;[data-forward-stage]&#x27;); if (b) showForwardStage(+b.dataset.forwardStage); }); showForwardStage(0);
+
+  const attentionTokens = [&#x27;The&#x27;,&#x27;model&#x27;,&#x27;predicts&#x27;,&#x27;tokens&#x27;];
+  const attentionScores = [[2.2],[.5,2.4],[1.1,.8,2.1],[.4,1.8,1.2,2.0]];
+  const softmax = (values) =&gt; { const max = Math.max(...values); const exp = values.map(v =&gt; Math.exp(v - max)); const sum = exp.reduce((a,b) =&gt; a + b, 0); return exp.map(v =&gt; v / sum); };
+  function updateAttention() {
+    const focus = +iemOne(&#x27;#m2-query-position&#x27;).value, temp = +iemOne(&#x27;#m2-attn-temp&#x27;).value;
+    iemOne(&#x27;#m2-attn-temp-out&#x27;).textContent = temp.toFixed(1);
+    const grid = iemOne(&#x27;#m2-attention-grid&#x27;); grid.style.gridTemplateColumns = &#x27;repeat(5, minmax(48px, 1fr))&#x27;;
+    let html = &#x27;&lt;span class=&quot;m2-attn-head&quot;&gt;Q \\ K&lt;/span&gt;&#x27; + attentionTokens.map(t =&gt; `&lt;span class=&quot;m2-attn-head&quot;&gt;${t}&lt;/span&gt;`).join(&#x27;&#x27;);
+    attentionScores.forEach((row, i) =&gt; {
+      const probs = softmax(row.map(v =&gt; v / temp));
+      html += `&lt;span class=&quot;m2-attn-head&quot;&gt;${attentionTokens[i]}&lt;/span&gt;`;
+      attentionTokens.forEach((_, j) =&gt; {
+        if (j &gt; i) html += &#x27;&lt;span class=&quot;m2-attn-cell masked&quot;&gt;mask&lt;/span&gt;&#x27;;
+        else { const p = probs[j]; const mix = i === focus ? 14 + p * 66 : 6 + p * 24; html += `&lt;span class=&quot;m2-attn-cell&quot; style=&quot;background:color-mix(in srgb, var(--iem-s1) ${mix.toFixed(0)}%, transparent)&quot;&gt;${fmt(p * 100, 0)}%&lt;/span&gt;`; }
+      });
+    });
+    grid.innerHTML = html;
+    const focusProbs = softmax(attentionScores[focus].map(v =&gt; v / temp)); const best = focusProbs.indexOf(Math.max(...focusProbs));
+    iemOne(&#x27;#m2-attn-observation&#x27;).textContent = `Query “${attentionTokens[focus]}” assigns its largest illustrative weight to “${attentionTokens[best]}” (${fmt(focusProbs[best] * 100, 0)}%). Future positions are masked before softmax.`;
+  }
+  [&#x27;m2-query-position&#x27;,&#x27;m2-attn-temp&#x27;].forEach(id =&gt; iemOne(&#x27;#&#x27; + id).addEventListener(&#x27;input&#x27;, updateAttention)); updateAttention();
+
+  function updateMlp() {
+    const hidden = +iemOne(&#x27;#m2-hidden&#x27;).value, ratio = +iemOne(&#x27;#m2-expansion&#x27;).value, tokens = +iemOne(&#x27;#m2-mlp-tokens&#x27;).value;
+    const intermediate = Math.max(256, Math.round(hidden * ratio / 256) * 256);
+    const params = 3 * hidden * intermediate, flops = 2 * params * tokens, elements = tokens * intermediate;
+    iemOne(&#x27;#m2-hidden-out&#x27;).textContent = hidden; iemOne(&#x27;#m2-expansion-out&#x27;).textContent = `${ratio.toFixed(1)}×`; iemOne(&#x27;#m2-mlp-tokens-out&#x27;).textContent = tokens;
+    iemOne(&#x27;#m2-mlp-input&#x27;).textContent = `H = ${hidden}`; iemOne(&#x27;#m2-mlp-wide&#x27;).textContent = `I = ${intermediate}`;
+    iemOne(&#x27;#m2-mlp-params&#x27;).textContent = params &gt;= 1e9 ? `${fmt(params / 1e9, 2)}B` : `${fmt(params / 1e6, 1)}M`;
+    iemOne(&#x27;#m2-mlp-flops&#x27;).textContent = fmtOps(flops); iemOne(&#x27;#m2-mlp-elements&#x27;).textContent = fmt(elements, 0);
+  }
+  [&#x27;m2-hidden&#x27;,&#x27;m2-expansion&#x27;,&#x27;m2-mlp-tokens&#x27;].forEach(id =&gt; iemOne(&#x27;#&#x27; + id).addEventListener(&#x27;input&#x27;, updateMlp)); updateMlp();
+
+  const candidateTokens = [&#x27;systems&#x27;,&#x27;tokens&#x27;,&#x27;models&#x27;,&#x27;fast&#x27;,&#x27;engineering&#x27;];
+  const candidateLogits = [3.2,2.6,1.8,1.2,.9];
+  let samplingDistribution = [];
+  function updateSampling() {
+    const temp = +iemOne(&#x27;#m2-temp&#x27;).value, topK = +iemOne(&#x27;#m2-top-k&#x27;).value;
+    iemOne(&#x27;#m2-temp-out&#x27;).textContent = temp.toFixed(1);
+    const order = candidateLogits.map((v,i) =&gt; [v,i]).sort((a,b) =&gt; b[0]-a[0]);
+    const keep = new Set(order.slice(0, topK).map(x =&gt; x[1]));
+    const scaled = candidateLogits.map((v,i) =&gt; keep.has(i) ? v / temp : -Infinity);
+    const finite = scaled.filter(Number.isFinite); const max = Math.max(...finite); const exp = scaled.map(v =&gt; Number.isFinite(v) ? Math.exp(v-max) : 0); const sum = exp.reduce((a,b) =&gt; a+b,0);
+    samplingDistribution = exp.map(v =&gt; v / sum);
+    iemOne(&#x27;#m2-prob-list&#x27;).innerHTML = candidateTokens.map((token,i) =&gt; `&lt;div class=&quot;m2-prob-row&quot;&gt;&lt;span&gt;${token}&lt;/span&gt;&lt;div class=&quot;iem-bar-track&quot;&gt;&lt;div class=&quot;iem-bar-fill${i===1?&#x27; alt&#x27;:i===2?&#x27; third&#x27;:&#x27;&#x27;}&quot; style=&quot;width:${samplingDistribution[i]*100}%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span&gt;${fmt(samplingDistribution[i]*100,1)}%&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+  }
+  [&#x27;m2-temp&#x27;,&#x27;m2-top-k&#x27;].forEach(id =&gt; iemOne(&#x27;#&#x27; + id).addEventListener(&#x27;input&#x27;, updateSampling)); updateSampling();
+  iemOne(&#x27;#m2-sample&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+    let r = Math.random(), index = 0;
+    for (let i = 0; i &lt; samplingDistribution.length; i++) { r -= samplingDistribution[i]; if (r &lt;= 0) { index = i; break; } }
+    iemOne(&#x27;#m2-sampled-token&#x27;).textContent = `Selected “${candidateTokens[index]}” at ${fmt(samplingDistribution[index]*100,1)}% probability.`;
+  });
+
+  const generationPrompt = [&#x27;The&#x27;,&#x27;model&#x27;,&#x27;predicts&#x27;,&#x27;one&#x27;];
+  const generationOutput = [&#x27;token&#x27;,&#x27;at&#x27;,&#x27;a&#x27;,&#x27;time&#x27;,&#x27;.&#x27;,&#x27;&lt;eos&gt;&#x27;];
+  let generationPasses = 0;
+  function renderGeneration() {
+    const shown = [...generationPrompt, ...generationOutput.slice(0, generationPasses)];
+    iemOne(&#x27;#m2-generation&#x27;).innerHTML = shown.map((token,i) =&gt; `&lt;span class=&quot;m2-token${i &gt;= generationPrompt.length ? &#x27; m2-generated&#x27; : &#x27;&#x27;}&quot;&gt;&lt;strong&gt;${token.replaceAll(&#x27;&lt;&#x27;,&#x27;&amp;lt;&#x27;).replaceAll(&#x27;&gt;&#x27;,&#x27;&amp;gt;&#x27;)}&lt;/strong&gt;&lt;span&gt;${i &gt;= generationPrompt.length ? &#x27;generated&#x27; : &#x27;prompt&#x27;}&lt;/span&gt;&lt;/span&gt;`).join(&#x27;&#x27;);
+    iemOne(&#x27;#m2-gen-passes&#x27;).textContent = generationPasses; iemOne(&#x27;#m2-gen-length&#x27;).textContent = shown.length;
+    const history = Array.from({length:generationPasses},(_,i) =&gt; generationPrompt.length + i).reduce((a,b) =&gt; a+b,0);
+    iemOne(&#x27;#m2-gen-history&#x27;).textContent = history;
+    iemAll(&#x27;[data-m2-loop-step]&#x27;).forEach((el,i) =&gt; el.classList.toggle(&#x27;is-active&#x27;, generationPasses &gt; 0 &amp;&amp; i === 4));
+    iemOne(&#x27;#m2-gen-next&#x27;).disabled = generationPasses &gt;= generationOutput.length;
+  }
+  iemOne(&#x27;#m2-gen-next&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { if (generationPasses &lt; generationOutput.length) generationPasses++; renderGeneration(); });
+  iemOne(&#x27;#m2-gen-reset&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { generationPasses = 0; renderGeneration(); }); renderGeneration();
+
+  const module2Quiz = [
+    {q:&#x27;What does an embedding lookup do?&#x27;,options:[&#x27;Selects learned vectors for token IDs&#x27;,&#x27;Computes softmax over the vocabulary&#x27;,&#x27;Schedules requests on a GPU&#x27;],correct:0,why:&#x27;Each token ID indexes a learned row in the embedding matrix, producing a hidden vector.&#x27;},
+    {q:&#x27;Why is a causal mask applied before attention softmax?&#x27;,options:[&#x27;To prevent reading future positions&#x27;,&#x27;To reduce vocabulary size&#x27;,&#x27;To quantize the MLP&#x27;],correct:0,why:&#x27;Future score entries are suppressed so token i can only attend to positions at or before i.&#x27;},
+    {q:&#x27;Which statement best separates attention from the MLP?&#x27;,options:[&#x27;Attention mixes positions; the MLP transforms each position&#x27;,&#x27;The MLP mixes positions; attention only normalizes&#x27;,&#x27;They perform exactly the same operation&#x27;],correct:0,why:&#x27;Attention routes information across sequence positions, while the MLP applies a learned nonlinear transformation position-wise.&#x27;},
+    {q:&#x27;Temperature changes what?&#x27;,options:[&#x27;The logits-to-probability distribution&#x27;,&#x27;The model parameter count&#x27;,&#x27;The tokenizer vocabulary&#x27;],correct:0,why:&#x27;Dividing logits by temperature sharpens or flattens softmax probabilities without changing model weights.&#x27;},
+    {q:&#x27;Why must ordinary autoregressive decoding run serially across output tokens?&#x27;,options:[&#x27;The next step depends on the token selected at the current step&#x27;,&#x27;GPUs cannot multiply matrices in parallel&#x27;,&#x27;Token IDs must be sent over Ethernet&#x27;],correct:0,why:&#x27;The next input is unknown until the current model step produces and selects a token.&#x27;}
+  ];
+  let module2QuizIndex = 0;
+  const module2QuizSolved = new Set();
+  function renderModule2Quiz() {
+    const q = module2Quiz[module2QuizIndex];
+    iemOne(&#x27;#m2-quiz-count&#x27;).textContent = `QUESTION ${module2QuizIndex + 1} OF ${module2Quiz.length}`; iemOne(&#x27;#m2-quiz-question&#x27;).textContent = q.q;
+    iemOne(&#x27;#m2-quiz-options&#x27;).innerHTML = q.options.map((option,i) =&gt; `&lt;label&gt;&lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;m2-quiz-choice&quot; value=&quot;${i}&quot;&gt;&lt;span&gt;${option}&lt;/span&gt;&lt;/label&gt;`).join(&#x27;&#x27;);
+    iemOne(&#x27;#m2-quiz-feedback&#x27;).textContent = module2QuizSolved.has(module2QuizIndex) ? `Correct. ${q.why}` : &#x27;Choose the answer that follows from the tensor path.&#x27;;
+    iemOne(&#x27;#m2-quiz-score&#x27;).textContent = `Score ${module2QuizSolved.size} / ${module2Quiz.length}`;
+  }
+  iemOne(&#x27;#m2-quiz-check&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+    const selected = iemOne(&#x27;input[name=&quot;m2-quiz-choice&quot;]:checked&#x27;);
+    if (!selected) { iemOne(&#x27;#m2-quiz-feedback&#x27;).textContent = &#x27;Choose an answer first.&#x27;; return; }
+    const q = module2Quiz[module2QuizIndex];
+    if (+selected.value === q.correct) { module2QuizSolved.add(module2QuizIndex); iemOne(&#x27;#m2-quiz-feedback&#x27;).textContent = `Correct. ${q.why}`; }
+    else iemOne(&#x27;#m2-quiz-feedback&#x27;).textContent = `Not yet. Trace the tensor path again. ${q.why}`;
+    iemOne(&#x27;#m2-quiz-score&#x27;).textContent = `Score ${module2QuizSolved.size} / ${module2Quiz.length}`;
+  });
+  iemOne(&#x27;#m2-quiz-next&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { module2QuizIndex = (module2QuizIndex + 1) % module2Quiz.length; renderModule2Quiz(); });
+  iemOne(&#x27;#m2-complete&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+    if (module2QuizSolved.size &lt; 4) { iemOne(&#x27;#m2-complete-status&#x27;).textContent = `Current score: ${module2QuizSolved.size}/5. Reach 4/5 to complete the checkpoint.`; return; }
+    module2Complete = true; iemOne(&#x27;#m2-complete-status&#x27;).textContent = &#x27;Module 2 complete. You are ready for Module 3: LLM Inference Internals.&#x27;; showLesson2(6);
+  });
+  renderModule2Quiz();
 
   iemAll(&#x27;[data-sim]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;{
     iemAll(&#x27;[data-sim]&#x27;).forEach(x=&gt;x.classList.toggle(&#x27;btn-primary&#x27;,x===b));

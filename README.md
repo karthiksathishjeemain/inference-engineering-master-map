@@ -17,6 +17,12 @@ Mirror: https://karthiksathishjeemain.github.io/inference-engineering-master-map
 - GPU memory-hierarchy explorer and continuous-batching timeline
 - Five-question mastery checkpoint and a hands-on Transformer profiling project
 
+## Module 2 — Neural network inference
+
+- Seven lessons covering tokenization, the Transformer forward pass, causal attention, MLPs, logits, sampling, and autoregressive generation
+- Interactive token/embedding explorer, forward-pass inspector, causal-attention matrix, MLP calculator, sampling controls, and generation loop
+- Five-question mastery checkpoint and a project to implement a next-token inference loop without a high-level generation helper
+
 ## Topics
 
 - Hardware, compute, memory, and bandwidth
