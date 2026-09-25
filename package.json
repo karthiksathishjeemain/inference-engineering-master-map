@@ -1,0 +1,16 @@
+{
+  "name": "inference-engineering-master-map",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/models.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "check": "npm test && node scripts/build.mjs --check",
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "playwright": "1.61.1"
+  }
+}

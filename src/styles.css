@@ -1,0 +1,422 @@
+#iem-platform {
+  --iem-s1: var(--viz-series-1);
+  --iem-s2: var(--viz-series-2);
+  --iem-s3: var(--viz-series-3);
+  --iem-s4: var(--viz-series-4);
+  color: var(--foreground);
+  width: 100%;
+}
+#iem-platform * { box-sizing: border-box; }
+#iem-platform .iem-topline,
+#iem-platform .iem-nav,
+#iem-platform .iem-section-head,
+#iem-platform .iem-kicker,
+#iem-platform .iem-meta,
+#iem-platform .iem-legend,
+#iem-platform .iem-node-head,
+#iem-platform .iem-control-head,
+#iem-platform .iem-bar-label,
+#iem-platform .iem-equation,
+#iem-platform .iem-project-head,
+#iem-platform .iem-question-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#iem-platform .iem-topline { justify-content: space-between; margin-bottom: 10px; }
+#iem-platform .iem-progress-shell {
+  height: 7px;
+  background: color-mix(in srgb, var(--muted) 70%, transparent);
+  overflow: hidden;
+  flex: 1 1 180px;
+  border-radius: 999px;
+}
+#iem-platform .iem-progress-fill {
+  height: 100%;
+  width: 8%;
+  background: var(--iem-s1);
+  transition: width 220ms ease;
+}
+#iem-platform .iem-nav { margin-bottom: 18px; }
+#iem-platform .iem-view { display: none; }
+#iem-platform .iem-view.is-active { display: block; }
+#iem-platform .iem-section-head { justify-content: space-between; margin: 0 0 14px; }
+#iem-platform .iem-section-head h2,
+#iem-platform .iem-detail h3,
+#iem-platform .iem-card-title { margin: 0; }
+#iem-platform .iem-kicker { color: var(--muted-foreground); }
+#iem-platform .iem-map-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, .8fr) minmax(300px, 1.4fr);
+  gap: 22px;
+  align-items: start;
+}
+#iem-platform .iem-layer-list { display: grid; gap: 4px; }
+#iem-platform .iem-layer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  text-align: left;
+  gap: 9px;
+}
+#iem-platform .iem-layer .iem-layer-num {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+#iem-platform .iem-layer .iem-layer-state { color: var(--muted-foreground); }
+#iem-platform .iem-detail { min-width: 0; }
+#iem-platform .iem-path {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(64px, 1fr));
+  align-items: stretch;
+  gap: 3px;
+  margin: 14px 0 18px;
+}
+#iem-platform .iem-path-step {
+  position: relative;
+  min-height: 60px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 8px 5px;
+  background: color-mix(in srgb, var(--iem-s1) 9%, transparent);
+  border-bottom: 2px solid color-mix(in srgb, var(--iem-s1) 48%, transparent);
+}
+#iem-platform .iem-path-step + .iem-path-step::before {
+  content: "›";
+  position: absolute;
+  left: -7px;
+  color: var(--muted-foreground);
+}
+#iem-platform .iem-triad,
+#iem-platform .iem-stats,
+#iem-platform .iem-sim-layout,
+#iem-platform .iem-lab-layout,
+#iem-platform .iem-project-grid,
+#iem-platform .iem-metric-grid {
+  display: grid;
+  gap: 14px;
+}
+#iem-platform .iem-triad { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#iem-platform .iem-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 14px 0; }
+#iem-platform .iem-sim-layout { grid-template-columns: minmax(220px, .7fr) minmax(300px, 1.3fr); }
+#iem-platform .iem-lab-layout { grid-template-columns: minmax(220px, .75fr) minmax(300px, 1.25fr); }
+#iem-platform .iem-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#iem-platform .iem-metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#iem-platform .iem-triad > div,
+#iem-platform .iem-teach-step,
+#iem-platform .iem-metric,
+#iem-platform .iem-project {
+  border-left: 2px solid var(--border);
+  padding-left: 12px;
+}
+#iem-platform .iem-triad strong,
+#iem-platform .iem-teach-step strong,
+#iem-platform .iem-metric strong,
+#iem-platform .iem-project strong { display: block; margin-bottom: 4px; font-weight: 500; }
+#iem-platform .iem-chip-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+#iem-platform .iem-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--iem-s1) 11%, transparent);
+}
+#iem-platform .iem-flow {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(64px, 1fr));
+  gap: 4px;
+  margin: 14px 0;
+}
+#iem-platform .iem-flow-node {
+  min-height: 86px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 8px 4px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 76%, transparent);
+  color: var(--card-foreground);
+  border-radius: 8px;
+  cursor: pointer;
+}
+#iem-platform .iem-flow-node:hover { background: var(--accent); color: var(--accent-foreground); }
+#iem-platform .iem-flow-node.is-active { background: var(--primary); color: var(--primary-foreground); }
+#iem-platform .iem-flow-node + .iem-flow-node::before {
+  content: "›";
+  position: absolute;
+  left: -7px;
+  top: 34px;
+  color: var(--muted-foreground);
+}
+#iem-platform .iem-flow-node svg { width: 18px; height: 18px; }
+#iem-platform .iem-node-detail { margin-bottom: 16px; }
+#iem-platform .iem-node-head { justify-content: space-between; margin-bottom: 10px; }
+#iem-platform .iem-timeline { margin: 18px 0; }
+#iem-platform .iem-time-axis {
+  display: grid;
+  grid-template-columns: 72px repeat(12, minmax(12px, 1fr));
+  gap: 2px;
+  align-items: stretch;
+  margin-bottom: 4px;
+}
+#iem-platform .iem-time-label { display: flex; align-items: center; color: var(--muted-foreground); }
+#iem-platform .iem-slot {
+  min-height: 28px;
+  background: color-mix(in srgb, var(--muted) 54%, transparent);
+  border-radius: 3px;
+  transition: background 180ms ease, transform 180ms ease;
+}
+#iem-platform .iem-slot.prefill { background: color-mix(in srgb, var(--iem-s2) 50%, transparent); }
+#iem-platform .iem-slot.decode { background: color-mix(in srgb, var(--iem-s1) 58%, transparent); }
+#iem-platform .iem-slot.active { transform: translateY(-2px); outline: 2px solid var(--ring); }
+#iem-platform .iem-legend { color: var(--muted-foreground); }
+#iem-platform .iem-swatch { width: 12px; height: 12px; display: inline-block; border-radius: 3px; }
+#iem-platform .iem-swatch.prefill { background: var(--iem-s2); }
+#iem-platform .iem-swatch.decode { background: var(--iem-s1); }
+#iem-platform .iem-control-stack { display: grid; gap: 14px; }
+#iem-platform .iem-control-head { justify-content: space-between; }
+#iem-platform .iem-control-head output { font-variant-numeric: tabular-nums; }
+#iem-platform .iem-chart { min-width: 0; }
+#iem-platform .iem-bars { display: grid; gap: 12px; margin-top: 16px; }
+#iem-platform .iem-bar-label { justify-content: space-between; }
+#iem-platform .iem-bar-track {
+  height: 16px;
+  background: color-mix(in srgb, var(--muted) 65%, transparent);
+  border-radius: 999px;
+  overflow: hidden;
+}
+#iem-platform .iem-bar-fill {
+  height: 100%;
+  min-width: 2px;
+  background: var(--iem-s1);
+  border-radius: 999px;
+  transition: width 220ms ease;
+}
+#iem-platform .iem-bar-fill.alt { background: var(--iem-s2); }
+#iem-platform .iem-bar-fill.third { background: var(--iem-s3); }
+#iem-platform .iem-equation {
+  justify-content: center;
+  margin: 16px 0;
+  padding: 12px;
+  background: color-mix(in srgb, var(--iem-s1) 8%, transparent);
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums;
+}
+#iem-platform .iem-eq-op { color: var(--muted-foreground); }
+#iem-platform .iem-canvas {
+  min-height: 260px;
+  display: grid;
+  align-content: center;
+}
+#iem-platform .iem-memory-stack { display: flex; height: 210px; gap: 4px; align-items: end; }
+#iem-platform .iem-memory-segment {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  place-items: end center;
+  padding: 8px 3px;
+  background: color-mix(in srgb, var(--iem-s1) 38%, transparent);
+  color: var(--foreground);
+  border-radius: 6px 6px 0 0;
+  transition: height 220ms ease;
+}
+#iem-platform .iem-memory-segment.weights { background: color-mix(in srgb, var(--iem-s2) 50%, transparent); }
+#iem-platform .iem-memory-segment.free { background: color-mix(in srgb, var(--muted) 70%, transparent); }
+#iem-platform .iem-gpu-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+#iem-platform .iem-gpu {
+  min-height: 112px;
+  padding: 9px;
+  background: color-mix(in srgb, var(--iem-s1) 10%, transparent);
+  border-top: 3px solid var(--iem-s1);
+  text-align: center;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+}
+#iem-platform .iem-comm-line { height: 2px; background: var(--iem-s3); margin: 8px 10%; position: relative; }
+#iem-platform .iem-comm-line::after { content: "all-reduce / gather"; position: absolute; left: 50%; transform: translate(-50%, -50%); background: var(--background); padding: 0 7px; color: var(--muted-foreground); white-space: nowrap; }
+#iem-platform .iem-scenario-list { display: grid; gap: 6px; }
+#iem-platform .iem-scenario-list .btn { justify-content: flex-start; text-align: left; }
+#iem-platform .iem-signal-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+#iem-platform .iem-signal-table th,
+#iem-platform .iem-signal-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); }
+#iem-platform .iem-answer { display: none; margin-top: 14px; }
+#iem-platform .iem-answer.is-visible { display: block; }
+#iem-platform .iem-checklist { display: grid; gap: 7px; margin: 12px 0; }
+#iem-platform .iem-checklist label { display: flex; gap: 8px; align-items: start; }
+#iem-platform .iem-project { padding-top: 8px; padding-bottom: 8px; }
+#iem-platform .iem-project-head { justify-content: space-between; margin-bottom: 5px; }
+#iem-platform .iem-stage-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); display: inline-block; }
+#iem-platform .iem-stage-dot.current { background: var(--iem-s1); }
+#iem-platform .iem-stage-dot.future { background: var(--muted-foreground); }
+#iem-platform .iem-teaching-loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 14px 0; }
+#iem-platform .iem-teach-step { min-height: 68px; }
+#iem-platform .iem-mode-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0; }
+#iem-platform .iem-module-summary { margin-bottom: 14px; }
+#iem-platform .iem-lesson-nav {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(68px, 1fr));
+  gap: 5px;
+  margin: 14px 0 20px;
+}
+#iem-platform .iem-lesson-tab {
+  min-height: 62px;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  text-align: left;
+  padding: 8px;
+}
+#iem-platform .iem-lesson-tab span:first-child { color: var(--muted-foreground); }
+#iem-platform .iem-lesson-tab.btn-primary span:first-child { color: var(--primary-foreground); }
+#iem-platform .iem-lesson-panel { display: none; }
+#iem-platform .iem-lesson-panel.is-active { display: block; }
+#iem-platform .iem-lesson-actions { display: flex; justify-content: space-between; gap: 8px; margin-top: 20px; }
+#iem-platform .iem-learning-copy { display: grid; gap: 12px; }
+#iem-platform .iem-learning-copy p { max-width: 72ch; }
+#iem-platform .iem-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+#iem-platform .iem-concept {
+  min-height: 118px;
+  padding: 12px;
+  background: color-mix(in srgb, var(--iem-s1) 7%, transparent);
+  border-top: 3px solid color-mix(in srgb, var(--iem-s1) 55%, transparent);
+}
+#iem-platform .iem-concept strong { display: block; margin-bottom: 5px; }
+#iem-platform .iem-code {
+  margin: 14px 0;
+  padding: 14px;
+  overflow-x: auto;
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  color: var(--foreground);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#iem-platform .iem-matmul {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0;
+}
+#iem-platform .iem-matrix {
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: color-mix(in srgb, var(--iem-s1) 14%, transparent);
+  border-bottom: 3px solid var(--iem-s1);
+}
+#iem-platform .iem-matrix.alt { background: color-mix(in srgb, var(--iem-s2) 15%, transparent); border-bottom-color: var(--iem-s2); }
+#iem-platform .iem-matrix.result { background: color-mix(in srgb, var(--iem-s3) 15%, transparent); border-bottom-color: var(--iem-s3); }
+#iem-platform .iem-hierarchy { display: grid; gap: 7px; margin: 16px 0; }
+#iem-platform .iem-hierarchy .btn { justify-content: space-between; text-align: left; }
+#iem-platform .iem-hierarchy .btn:nth-child(2) { margin-inline: 5%; }
+#iem-platform .iem-hierarchy .btn:nth-child(3) { margin-inline: 10%; }
+#iem-platform .iem-hierarchy .btn:nth-child(4) { margin-inline: 15%; }
+#iem-platform .iem-chain {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+  margin: 14px 0;
+}
+#iem-platform .iem-chain span {
+  min-height: 58px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 7px;
+  background: color-mix(in srgb, var(--iem-s1) 9%, transparent);
+  border-bottom: 2px solid color-mix(in srgb, var(--iem-s1) 45%, transparent);
+}
+#iem-platform .iem-memory-ledger { display: grid; gap: 8px; margin: 16px 0; }
+#iem-platform .iem-memory-row { display: grid; grid-template-columns: 100px 1fr 92px; gap: 8px; align-items: center; }
+#iem-platform .iem-memory-row .iem-bar-track { height: 20px; }
+#iem-platform .iem-roofline { margin: 24px 0 12px; width: 100%; }
+#iem-platform .iem-roofline figcaption { font-weight: 600; margin-bottom: 8px; }
+#iem-platform #m1-roof-chart { display: block; width: 100%; height: 290px; overflow: hidden; }
+#iem-platform #m1-roof-chart text { fill: var(--foreground); font-size: 12px; }
+#iem-platform .iem-quiz-options { display: grid; gap: 8px; margin: 12px 0; }
+#iem-platform .iem-quiz-options label { display: flex; align-items: start; gap: 8px; }
+#iem-platform .iem-project-brief { display: grid; gap: 10px; margin-top: 16px; }
+#iem-platform .iem-project-brief > div { border-left: 2px solid var(--border); padding-left: 12px; }
+#iem-platform .iem-project-brief strong { display: block; margin-bottom: 3px; }
+#iem-platform .iem-footnote { margin-top: 18px; color: var(--muted-foreground); }
+#iem-platform .iem-footnote a { color: inherit; }
+#iem-platform .iem-hidden { display: none !important; }
+@media (max-width: 760px) {
+  #iem-platform .iem-map-layout,
+  #iem-platform .iem-sim-layout,
+  #iem-platform .iem-lab-layout { grid-template-columns: 1fr; }
+  #iem-platform .iem-flow { grid-template-columns: repeat(3, minmax(78px, 1fr)); }
+  #iem-platform .iem-flow-node + .iem-flow-node::before { display: none; }
+  #iem-platform .iem-path { grid-template-columns: repeat(4, minmax(70px, 1fr)); }
+  #iem-platform .iem-path-step + .iem-path-step::before { display: none; }
+  #iem-platform .iem-teaching-loop { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #iem-platform .iem-metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #iem-platform .iem-lesson-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #iem-platform .iem-concept-grid { grid-template-columns: 1fr; }
+  #iem-platform .iem-chain { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 470px) {
+  #iem-platform .iem-triad,
+  #iem-platform .iem-stats,
+  #iem-platform .iem-project-grid,
+  #iem-platform .iem-metric-grid { grid-template-columns: 1fr; }
+  #iem-platform .iem-path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #iem-platform .iem-gpu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #iem-platform .iem-teaching-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #iem-platform .iem-time-axis { grid-template-columns: 54px repeat(12, minmax(8px, 1fr)); }
+  #iem-platform .iem-slot { min-height: 22px; }
+  #iem-platform .iem-lesson-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #iem-platform .iem-matmul { grid-template-columns: 1fr; }
+  #iem-platform .iem-matmul > span { text-align: center; }
+  #iem-platform .iem-memory-row { grid-template-columns: 74px 1fr; }
+  #iem-platform .iem-memory-row > span:last-child { grid-column: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #iem-platform .iem-progress-fill,
+  #iem-platform .iem-bar-fill,
+  #iem-platform .iem-memory-segment,
+  #iem-platform .iem-slot { transition: none; }
+}
+
+/* Layout rules for the standalone site, including nested narrow content. */
+#iem-platform { overflow-wrap: break-word; }
+#iem-platform .iem-triad, #iem-platform .iem-stats { grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr)); }
+#iem-platform .iem-path { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#iem-platform .iem-flow { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+#iem-platform .iem-path-step + .iem-path-step::before, #iem-platform .iem-flow-node + .iem-flow-node::before { content: none; }
+#iem-platform .iem-layer.is-selected .iem-layer-num,
+#iem-platform .iem-layer.is-selected .iem-layer-state { color: var(--primary-foreground); }
+#iem-platform .iem-layer .iem-layer-state { font-size: 15px; }
+#iem-platform .iem-flow-index { font-family: var(--font-mono); font-size: 12px; opacity: .8; }
+#iem-platform .iem-lesson-tab { width: 100%; text-align: left; justify-content: start; }
+#iem-platform .iem-memory-stack { display: grid; gap: 12px; height: auto; margin: 20px 0; }
+#iem-platform .iem-bar-fill { min-width: 0; }
+#iem-platform .iem-signal-table { table-layout: fixed; font-size: 14px; }
+#iem-platform .iem-signal-table td, #iem-platform .iem-signal-table th { overflow-wrap: anywhere; vertical-align: top; }
+#iem-platform .iem-checklist label, #iem-platform .iem-quiz-options label { min-height: 44px; padding: 8px; border-radius: 6px; }
+#iem-platform .iem-checklist label:hover, #iem-platform .iem-quiz-options label:hover { background: var(--accent); }
+#iem-platform .iem-code { max-width: 100%; font-size: 14px; }
+#iem-platform .iem-comm-line { margin-block: 24px; }
+#iem-platform .iem-layer { white-space: normal; }
+#iem-platform .iem-memory-row { min-width: 0; }
+@media (max-width: 520px) {
+  #iem-platform .iem-stats, #iem-platform .iem-triad, #iem-platform .iem-project-grid, #iem-platform .iem-metric-grid { grid-template-columns: 1fr; }
+  #iem-platform .iem-path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #iem-platform .iem-hierarchy .btn { margin-inline: 0; flex-wrap: wrap; }
+}
