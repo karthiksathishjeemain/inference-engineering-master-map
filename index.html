@@ -1684,11 +1684,28 @@ html&gt;body{padding:0}&lt;/style&gt;
       right: 14px;
       bottom: 34px;
       height: 120px;
-      border-left: 4px solid var(--iem-s2);
-      border-top: 4px solid var(--iem-s1);
-      transform: skewY(-25deg);
-      transform-origin: left bottom;
       opacity: .8;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    #iem-platform .iem-roofline-line::before {
+      content: &#x27;&#x27;;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40%;
+      height: 100%;
+      background: var(--iem-s2);
+      clip-path: polygon(0 calc(100% - 4px), 100% 0, 100% 4px, 0 100%);
+    }
+    #iem-platform .iem-roofline-line::after {
+      content: &#x27;&#x27;;
+      position: absolute;
+      left: 40%;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: var(--iem-s1);
     }
     #iem-platform .iem-roofline-dot {
       position: absolute;
